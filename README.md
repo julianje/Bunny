@@ -1,4 +1,4 @@
-![Bunny](BunnyLogo.pdf)
+![Bunny](BunnyLogo.png)
 
 ## About
 
