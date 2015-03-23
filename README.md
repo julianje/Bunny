@@ -1,5 +1,4 @@
-#Bunny
-______
+![Bunny](BunnyLogo.pdf)
 
 ## About
 
