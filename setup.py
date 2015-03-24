@@ -5,7 +5,7 @@ def readme():
 		return f.read()
 
 setup(name='Bunny',
-	version='0.0.1',
+	version='0.1',
 	description='Hop around the experiment space.',
 	long_description=readme(),
 	url='http://gibthub.com/julianje/bunny',
@@ -15,7 +15,7 @@ setup(name='Bunny',
 	packages=['Bunny'],
 	install_requires=[
 		'numpy',
-		'matplotlib.pyplot'
+		'matplotlib'
 	],
 	include_package_data=True,
 	zip_safe=False)

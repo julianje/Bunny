@@ -2,7 +2,7 @@
 
 ## About
 
-Bunny is a python package that lets you "hop" around different dimensions experiments to find the best design.
+Bunny is a python package that lets you hop around different dimensions experiments to find the best design.
 
 ## How it works
 
@@ -22,3 +22,10 @@ Inspect will take a full experiment, participant model, and test and compute dif
 
 Hop will take an experiment, participant model, and test, and search for missing values. It will then simulate runs using different values to help find the best design. For example, if an experiment object doesn't have a sample size. Bunny will simulate the experiment for different sample sizes.
 
+## Detailed usage
+
+All of this will be covered through high level functions so hopefully no one will have to worry about this ever
+
+### Experiment class
+
+Three ways to add participants:
