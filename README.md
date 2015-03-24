@@ -1,4 +1,4 @@
-![Bunny](BunnyLogo.png)
+-> ![Bunny](Logos/BunnyLogo.png) <-
 
 ## About
 
