@@ -14,7 +14,7 @@ class Experiment(object):
 	Display(B) prints properties, B is boolean value indicating verbosity
 	"""
 
-	def __init__(self,Participants=None,StatTest=None,Name="Experiment_Skeleton_Object"):
+	def __init__(self,Participants=None,StatTest=None,Name="Experiment_Object"):
 		self.SampleSize = None
 		if Participants==None:
 			self.Participants=[]
@@ -24,6 +24,7 @@ class Experiment(object):
 			self.Participants = Participants
 		self.StatTest = StatTest
 		self.Name = Name
+		self.Power = None
 
 	def SetParticipants(self,Participants):
 		"""
@@ -32,6 +33,20 @@ class Experiment(object):
 		if (self.Participants != []):
 			print "WARNING: You've replaced the participant models.\nDid you mean to use Experiment.AddParticipants()?"
 		self.Participants = [Participants]
+
+# Power functions
+
+	def SetPower(self, Power):
+		"""
+		Manually set power
+		"""
+		self.Power = Power
+
+	def UpdatePower(self, N=1000):
+		self.Power = self.GetPower()
+
+	def ResetPower(self):
+		self.Power=None
 
 	def GetPower(self, N=1000):
 		results = self.Replicate(N)
@@ -81,7 +96,13 @@ class Experiment(object):
 		self.Participants.extend(Participants)
 
 	def SetSampleSize(self, SampleSize):
-		self.SampleSize=SampleSize
+		if int(SampleSize)<=0:
+			print "Error: Sample size must be positive integer."
+		else:
+			self.SampleSize=int(SampleSize)
+
+	def ResetSampleSize(self):
+		self.SampleSize=None
 
 	def SetTest(self,Test):
 		self.StatTest = Test

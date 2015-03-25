@@ -1,6 +1,6 @@
 import scipy.stats
 
-def BinomialTest(TestType="TT",alpha=0.05,Bias=0.5):
+def Binomial(TestType="TT",alpha=0.05,Bias=0.5):
 	# Binomial test
 	if TestType=="TT":
 		def F(Data):
