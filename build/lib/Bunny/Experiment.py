@@ -59,6 +59,9 @@ class Experiment(object):
 		"""
 		Get data from each participant model according to specified sample size.
 		"""
+		if self.SampleSize==None:
+			print "Error: No sample size!"
+			return None
 		# Check how many conditions you have (as participant models)
 		Conditions = len(self.Participants)
 		# Initialize an empty array

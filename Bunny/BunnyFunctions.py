@@ -25,6 +25,6 @@ def ExploreSampleSize(Exp,lower=1,limit=-1,samples=1000):
 		Power.append(Exp.GetPower(samples))
 	return [SampleSize, Power]
 
-def PlotPowersamples(Samples):
+def PlotPowerSamples(Samples):
 	plt.plot(Samples[0],Samples[1],'bo',Samples[0],Samples[1],'k')
 	plt.show()
