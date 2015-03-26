@@ -21,6 +21,14 @@ def Binomial(TestType="TT",alpha=0.05,Bias=0.5):
 		return None
 	return F
 
+def Majority():
+	# Test for qualitative bias
+	def F(Data):
+		Conditions=Data.shape[0]
+		results=[Data[i].sum()>Data.shape[1]*1.0/2 for i in range(Conditions)]
+		final = 1 if sum(results)==Conditions else 0
+		return [final,results]
+
 def TTest(alpha=0.05):
 	def F(Data):
 		if Data.shape[0]!=2:
