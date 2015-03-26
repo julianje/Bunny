@@ -33,7 +33,7 @@ Or help you explore the relationship between sample size and power
 
 You can save and load experiment objects as well
 
-	Bunny.Save(Experiment,"MyExperiment") # Add a .p
+	Bunny.Save(Experiment,"MyExperiment") # Adds a .p suffix
 	Experiment=Bunny.Load("MyExperiment.p")
 
 ### Meta analysis
