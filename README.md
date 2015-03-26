@@ -31,7 +31,7 @@ Or help you explore the relationship between sample size and power
 
 	Bunny.Explore(Experiment)
 
-You can sabe and load experiment objects as well
+You can save and load experiment objects as well
 
 	Bunny.Save(Experiment,"MyExperiment") # Add a .p
 	Experiment=Bunny.Load("MyExperiment.p")
@@ -45,6 +45,8 @@ Coming soon
 Coming soon
 
 # Creating experiment objects
+
+See example folder.
 
 ### Experiment descriptions
 
