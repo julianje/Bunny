@@ -60,8 +60,10 @@ Coming soon
 
 # Known issues:
 
-Bunny's pre-registration uses openssl. If you're using anaconda. You might get the warning:
+Bunny's pre-registration uses openssl. If you're using anaconda you might get the warning:
 
 WARNING: can't open config file: /opt/anaconda1anaconda2anaconda3/ssl/openssl.cnf
 
 This is a known issue: https://github.com/ContinuumIO/anaconda-issues/issues/137
+
+A workaround for this will be included in Bunny soon.
