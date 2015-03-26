@@ -1,4 +1,4 @@
-![Bunny](../Logos/bunny_longform.png)
+![Bunny](../../Logos/bunny_longform.png)
 
 # Examples
 
