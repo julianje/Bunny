@@ -12,9 +12,9 @@ class Participant(object):
 	Display(B) prints properties, B is boolean value indicating verbosity
 	"""
 
-	def __init__(self,Name="Participant_Skeleton_Object"):
+	def __init__(self,Behavior=None,Name="Participant_Object"):
 		self.Name=Name
-		self.Behavior=None
+		self.Behavior=Behavior
 
 	def Execute(self):
 		if self.Validate():

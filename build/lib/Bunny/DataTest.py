@@ -9,8 +9,8 @@ class DataTest(object):
 	Display(B)  prints properties, B is boolean value indicating verbosity
 	"""
 
-	def __init__(self,Name="DataTest_Skeleton_Object"):
-		self.Test=None
+	def __init__(self,Test=None,Name="DataTest_Object"):
+		self.Test=Test
 		self.Name=Name
 
 	def SetTest(self, Test):

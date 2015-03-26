@@ -52,7 +52,7 @@ def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 			upper = current
 			current = (upper-lower)/2+lower
 
-def Inspect(Exp):
+def Inspect(Exp,RecomputePower=False):
 	"""
 	Print report of an experiment object.
 	"""
@@ -61,32 +61,30 @@ def Inspect(Exp):
 		sys.stdout.write(" SUCCESS\n\n")
 	sys.stdout.write("Experiment name: "+str(Exp.Name)+"\n")
 	sys.stdout.write("Statistical test: "+str(Exp.StatTest.Name)+"\n\n")
-	if not Exp.Power==None:
-		sys.stdout.write("Power: "+str(Exp.Power)+" (Exp.UpdatePower() to update)\n")
-	else:
-		sys.stdout.write("No power. Checking if it can be estimated... ")
-		if not Exp.SampleSize==None:
-			sys.stdout.write("Yes.\n\n")
-			Exp.UpdatePower()
-			sys.stdout.write("Power: "+str(Exp.Power)+"\n")
-		else:
-			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n\n")
 	if not Exp.SampleSize==None:
 		sys.stdout.write("Sample size: "+str(Exp.SampleSize)+"\n")
 	else:
-		sys.stdout.write("No sample size associated. Checking if it can be estimated... ")
+		sys.stdout.write("No sample size associated. Checking if I can estimate it... ")
 		if not Exp.Power==None:
 			sys.stdout.write("Yes.\nComputing smallest sample size needed... \n\n")
 			discard = Hop(Exp,limit=100,power=Exp.Power,samples=5000,Verbose=False)
 			sys.stdout.write("Sample size: " + str(Exp.SampleSize)+"\n")
 		else:
 			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n")
-
-#def Explore(Exp):
-#	"""
-#	Explore how the test will perform as a function of possible outcomes.
-#	"""
-#	return None
+	if not Exp.Power==None:
+		if RecomputePower==True:
+			Exp.UpdatePower()
+			sys.stdout.write("Power: "+str(Exp.Power)+" (Freshly computed!)\n")
+		else:
+			sys.stdout.write("Power: "+str(Exp.Power)+" (Call Bunny.Inspect(True) to recompute power)\n")
+	else:
+		sys.stdout.write("No power. Checking if I can estimate it... ")
+		if not Exp.SampleSize==None:
+			sys.stdout.write("Yes.\n\n")
+			Exp.UpdatePower()
+			sys.stdout.write("Power: "+str(Exp.Power)+"\n")
+		else:
+			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n\n")
 
 # Mid-level functions
 def ExploreSampleSize(Exp,lower=1,limit=-1,samples=50000):
