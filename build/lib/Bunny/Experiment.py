@@ -1,6 +1,7 @@
 from Participant import *
 from DataTest import *
 import numpy as np
+import warnings
 
 class Experiment(object):
 	"""
@@ -49,8 +50,15 @@ class Experiment(object):
 		self.Power=None
 
 	def GetPower(self, N=1000):
-		results = self.Replicate(N)
+		results = self.ExtractDecision(self.Replicate(N))
 		return sum(results)*1.0/len(results)
+
+	def ExtractDecision(self, Data):
+		"""
+		Extract final decision in each experiment
+		to calculate power.
+		"""
+		return [Data[i][0] for i in range(len(Data))]
 
 	def Replicate(self, N=1000):
 		"""
@@ -62,7 +70,13 @@ class Experiment(object):
 		"""
 		Simulate experiment and run test
 		"""
-		return self.TestData(self.CollectData())
+		D = self.CollectData()
+		warnings.filterwarnings('ignore',category=FutureWarning)
+		if D==None:
+			print "Failed to get data."
+			return None
+		else:
+			return self.TestData(D)
 
 	def TestData(self,Data):
 		"""
@@ -113,10 +127,7 @@ class Experiment(object):
 		"""
 		V1=self.ValidateParticipants()
 		V2=self.ValidateTest()
-		if ((V1==1) and (V2==1)):
-			return 1
-		else:
-			return 0
+		return 1 if ((V1==1) and (V2==1)) else 0
 
 	def ValidateParticipants(self):
 		"""

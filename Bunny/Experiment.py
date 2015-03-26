@@ -1,6 +1,7 @@
 from Participant import *
 from DataTest import *
 import numpy as np
+import warnings
 
 class Experiment(object):
 	"""
@@ -70,6 +71,7 @@ class Experiment(object):
 		Simulate experiment and run test
 		"""
 		D = self.CollectData()
+		warnings.filterwarnings('ignore',category=FutureWarning)
 		if D==None:
 			print "Failed to get data."
 			return None
