@@ -1,31 +1,62 @@
 ![Bunny](Logos/BunnyLogo.png)
 
-## About
+# About
 
-Bunny is a python package that lets you hop around different dimensions experiments to find the best design.
+Bunny is a python package that does simulation-based power analyses. The ability to do meta-analyses and to pre-register designs is being implemented.
 
-## How it works
+# Installation
 
-Bunny has three kinds of objects: Participants, experiments, and statistical tests.
+To install download the source code and on a terminal run
 
-Experiments contain meta-data about the experiment: Sample size, age range, measure type, number of conditions, etc.
+	python setup.py install
+	pip uninstall Bunny
 
-Participant objects contain a model of how participants behave. Thus, hypotheses are formalized as participants.
+# Main usage
 
-Test objects contain analysis methods for participants in the experiment.
+### Power analysis
 
-## Vision
+Given an experiment object (See below on how to build experiments), Bunny can ...
 
-Bunny's main functions will be Hop and Inspect.
+Calculate its power, given the sample size
 
-Inspect will take a full experiment, participant model, and test and compute different properties of the experiment through simulation (e.g., power).
+	Experiment.SetSampleSize(30)
+	Bunny.Inspect(Experiment)
 
-Hop will take an experiment, participant model, and test, and search for missing values. It will then simulate runs using different values to help find the best design. For example, if an experiment object doesn't have a sample size. Bunny will simulate the experiment for different sample sizes.
+Search for the smallest sample size with the desired power
 
-## Detailed usage
+	Experiment.SetPower(0.95)
+	Bunny.Hop(Experiment)
 
-All of this will be covered through high level functions so hopefully no one will have to worry about this ever
+Or help you explore the relationship between sample size and power
 
-### Experiment class
+	Bunny.Explore(Experiment)
 
-Three ways to add participants:
+### Meta analysis
+
+Coming soon
+
+### Pre-registration
+
+Coming soon
+
+# Creating experiment objects
+
+### Experiment descriptions
+
+Coming soon
+
+### Through Bunny libraries
+
+Bunny comes with two libraries with common statistical tests (Bunny.TestLibrary) and models of participants (Bunny.ParticipantLibrary)
+
+### Manually
+
+Coming soon
+
+# Known issues:
+
+Bunny's pre-registration uses openssl. If you're using anaconda. You might get the warning:
+
+WARNING: can't open config file: /opt/anaconda1anaconda2anaconda3/ssl/openssl.cnf
+
+This is a known issue: https://github.com/ContinuumIO/anaconda-issues/issues/137
