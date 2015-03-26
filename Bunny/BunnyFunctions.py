@@ -2,6 +2,7 @@ from Experiment import *
 from Participant import *
 import matplotlib.pyplot as plt
 import sys
+import pickle
 
 def Explore(Exp,dimension="SampleSize"):
 	if not Exp.Validate():
@@ -85,6 +86,14 @@ def Inspect(Exp,RecomputePower=False):
 			sys.stdout.write("Power: "+str(Exp.Power)+"\n")
 		else:
 			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n\n")
+
+def Save(Exp,Filename):
+	Filename = Filename + ".p"
+	pickle.dump(Exp,open(Filename, "wb"))
+
+def Load(Filename):
+	Experiment = pickle.load(open(Filename, "rb"))
+	return Experiment
 
 # Mid-level functions
 def ExploreSampleSize(Exp,lower=1,limit=-1,samples=50000):
