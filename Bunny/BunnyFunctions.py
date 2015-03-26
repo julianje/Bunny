@@ -110,11 +110,11 @@ def ExploreSampleSize(Exp,lower=1,limit=-1,samples=10000):
 	SampleSize=range(lower,limit+1)
 	CurrSampleSize=Exp.SampleSize
 	for i in SampleSize:
-		if i==0:
+		if i==lower:
 			start = time.time()
 		Exp.SetSampleSize(i)
-		Exp.UpdatePower(samples)
-		if i==0:
+		Power.append(Exp.GetPower(samples))
+		if i==lower:
 			end = time.time()
 			secs = (end-start)*len(SampleSize)
 			sys.stdout.write("This will take at least ")
