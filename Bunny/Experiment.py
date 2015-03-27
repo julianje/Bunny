@@ -110,7 +110,9 @@ class Experiment(object):
 		self.Participants.extend(Participants)
 
 	def SetSampleSize(self, SampleSize):
-		if int(SampleSize)<=0:
+		if SampleSize==None:
+			self.SampleSize=None
+		elif int(SampleSize)<=0:
 			print "Error: Sample size must be positive integer."
 		else:
 			self.SampleSize=int(SampleSize)

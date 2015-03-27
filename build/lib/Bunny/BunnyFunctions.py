@@ -5,14 +5,13 @@ import sys
 import pickle
 import time
 
-def Explore(Exp,dimension="SampleSize"):
+def Explore(Exp,filename=None):
 	if not Exp.Validate():
 		print "Error: Experiment failed validation."
 		return None
-	if dimension=="SampleSize":
-		print "Exploring sample sizes ... "
-		res = ExploreSampleSize(Exp)
-		PlotPowerSamples(res)
+	print "Exploring sample sizes ... "
+	res = ExploreSampleSize(Exp)
+	PlotPowerSamples(res,filename)
 
 def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 	if power==None:
@@ -128,10 +127,23 @@ def ExploreSampleSize(Exp,lower=1,limit=-1,samples=10000):
 				else:
 					hours = mins*1.0/60
 					sys.stdout.write(str(round(hours,2))+ " hours.\n")
-	Exp.SampleSize=CurrSampleSize # Restore experiment object.
-	Exp.GetPower(samples)
+	# Restore experiment object.
+	if CurrSampleSize == None:
+		Exp.ResetSampleSize()
+		Exp.ResetPower()
+	else:
+		Exp.SetSampleSize(CurrSampleSize)
+		Exp.UpdatePower(samples)
 	return [SampleSize, Power]
 
-def PlotPowerSamples(Samples):
+def PlotPowerSamples(Samples,Filename=None):
+	plt.clf()
 	plt.plot(Samples[0],Samples[1],'bo',Samples[0],Samples[1],'k')
-	plt.show()
+	plt.xlabel('Sample Size')
+	plt.ylabel('Power')
+	plt.title('Relation between sample size and power')
+	plt.grid(True)
+	if Filename==None:
+		plt.show()
+	else:
+		plt.savefig(Filename)

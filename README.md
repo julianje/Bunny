@@ -31,6 +31,12 @@ Or explore the relationship between sample size and power
 
 	Bunny.Explore(Experiment)
 
+You can also save the output graph by giving a filename
+
+	Bunny.Explore(Experiment,"MyImage.pdf")
+
+supported formats are emf, eps, pdf, png, ps, raw, rgba, svg, and svgz (done through pyplot.savefig()).
+
 # Experiment objects
 
 Experiment objects are a combination of one (or many) models of behavior (e.g., binomial behavior with 90% chance of giving right answer) and some processing you'll do with the data (e.g., a two-tailed binomial test).
