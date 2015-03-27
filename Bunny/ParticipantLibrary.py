@@ -11,14 +11,14 @@ def Binomial(Bias=0.5):
 	# Generate an agent with a binomial bias
 	def F(B=Bias):
 		return 1 if random.random() < B else 0
-	return F
+	return [F,"Binomial behavior","Unit"]
 
 def Poisson(L=1):
 	# Generate an agent with a poisson distribution
 	def F(Lambda=L):
 		# Last zero is because np returns an array.
 		return np.random.poisson(Lambda,1)[0]
-	return F
+	return [F,"Poisson behavior","Real"]
 
 def Empirical(List):
 	# If list is a list of items it will randomly select one,
@@ -34,4 +34,4 @@ def Empirical(List):
 		List = [item for sublist in NewList for item in sublist]
 	def F():
 		return random.choice((List))
-	return F
+	return [F,"Empirically set behavior","None"]

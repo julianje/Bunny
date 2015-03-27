@@ -126,7 +126,13 @@ Where TestType can be two-tailed ("TT") or one-tailed ("OT")
 
 ### Pariticipant library
 
-A model in the participant library should be a function that returns a new function. This function can take input arguments but they must have a default value. The output should be a single number. Support for participant models that return more than one number is easy to implement, but it's not clear whether it is useful
+A model in the participant library should be a function that returns a new function. This function can take input arguments but they must have a default value. The output should be a single number. Support for participant models that return more than one number is easy to implement, but it's not clear whether it is useful.
+
+Alternatively, you can also return the function along with it's name and information about it's input if any. If you choose to do that, you should return a list with three items. The first item is the function, the second item is the function's name (which will be overriden if the user declares another function when building the Participant object), and a string indicating whether the function's input can be changed. This is indicated through the strings "Unit", "Integers", "RealNumbers", or "None".
+
+"Unit" functions have a real-valued parameter between 0 and 1 that can be modified as an argument (ParticipantLibrary.Binomial() is an example); "Integer" functions take an integer parameter; "Real" functions take a real parameter (ParticipantLibrary.Poisson() is an example); and "None" functions don't take any input.
+
+If the Participant object only receives a function, the input variation is set to "Unknown."
 
 ### Test library
 

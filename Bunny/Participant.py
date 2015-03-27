@@ -1,4 +1,3 @@
-
 class Participant(object):
 	"""
 	Participant class.
@@ -13,8 +12,21 @@ class Participant(object):
 	"""
 
 	def __init__(self,Behavior=None,Name="Participant_Object"):
-		self.Name=Name
-		self.Behavior=Behavior
+		if isinstance(Behavior, list):
+			# If the behavior is a list, then extract it's name
+			# and information about variation.
+			self.Behavior = Behavior[0]
+			if Name == "Participant_Object":
+				self.Name = Behavior[1]
+			else:
+				self.Name = Name
+			self.InputVariation = Behavior[2]
+		else:
+			# Otherwise the input is likely just a function
+			self.Behavior = Behavior
+			self.Name = Name
+			# No information about whether function takes arguments
+			self.InputVariation = "Unknown"
 
 	def Execute(self):
 		if self.Validate():
@@ -29,8 +41,23 @@ class Participant(object):
 		else:
 			return None
 
-	def SetBehavior(self, Behavior):
-		self.Behavior = Behavior
+	def SetBehavior(self, Behavior, Name="Participant_Object"):
+		if isinstance(Behavior, list):
+			# If the behavior is a list, then extract it's name
+			# and information about variation.
+			self.Behavior = Behavior[0]
+			if Name == "Participant_Object":
+				self.Name = Behavior[1]
+			else:
+				self.Name = Name
+			self.InputVariation = Behavior[2]
+		else:
+			# Otherwise the input is likely just a function
+			self.Behavior = Behavior
+			# No information about whether function takes arguments
+			self.InputVariation = "Unknown"
+			# Replace name.
+			self.Name = Name
 
 	def AddName(self, Name):
 		self.Name = Name
