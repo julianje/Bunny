@@ -28,11 +28,23 @@ creates an agent that gets things right 80% of the time.
 
 Input is lambda
 
-    F=Bunny.ParticipantLibrar.Poisson(L=5)
+    F=Bunny.ParticipantLibrary.Poisson(L=5)
 
 you can manually override it later
 
     F(Lambda=1)
+
+##### Empirical agent
+
+You can also create an agent that samples from an empirical distribution. If your observations are 1, 1, 3, 4, and 7. You can use this distribution to build a participant model
+
+    Bunny.ParticipantLibrary.Empirical([1,1,3,4,7])
+
+This distribution will return 1 with probability 2/5, and 3, 4 and 7 each with probability 1/5.
+
+If the empirical distribution is too long. You can also send the counts. For example, if you saw children choose option 0 ten times and option 1 thirty times you can create the function through
+
+    Bunny.ParticipantLibrary.Empirical([[0,10],[1,30]])
 
 ### TestLibrary
 

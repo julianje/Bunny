@@ -19,3 +19,19 @@ def Poisson(L=1):
 		# Last zero is because np returns an array.
 		return np.random.poisson(Lambda,1)[0]
 	return F
+
+def Empirical(List):
+	# If list is a list of items it will randomly select one,
+	# if it's a list of lists, it will take the first value as the
+	# outcome, and the second value as the number of counts.
+	# Generate an agent that responds as given by the empirical distribution
+	Lists = [isinstance(i,list) for i in List]
+	# If you got a list of lists
+	if sum(Lists)==len(Lists):
+		# Repeat each item by the number of observations
+		NewList = [[i[0]]*i[1] for i in List]
+		# Flatten resulting list
+		List = [item for sublist in NewList for item in sublist]
+	def F():
+		return random.choice((List))
+	return F
