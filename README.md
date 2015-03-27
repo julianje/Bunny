@@ -2,7 +2,7 @@
 
 # About
 
-Bunny is a python package that does simulation-based power analyses. The ability to do meta-analyses and to pre-register designs is being implemented.
+Bunny is a python package that does simulation-based power analyses. Meta-analyses pre-registrations coming soon.
 
 # Installation
 
@@ -15,7 +15,7 @@ To install download the source code and on a terminal run
 
 ### Power analysis
 
-Given an experiment object (See below on how to build experiments), Bunny can ...
+Given an experiment (See example folder on how to build experiments), Bunny can ...
 
 Calculate its power, given the sample size
 
@@ -27,38 +27,17 @@ Search for the smallest sample size with the desired power
 	Experiment.SetPower(0.95)
 	Bunny.Hop(Experiment)
 
-Or help you explore the relationship between sample size and power
+Or explore the relationship between sample size and power
 
 	Bunny.Explore(Experiment)
 
-You can save and load experiment objects as well
+# Experiment objects
 
-	Bunny.Save(Experiment,"MyExperiment") # Adds a .p suffix
-	Experiment=Bunny.Load("MyExperiment.p")
+Experiment objects are a combination of one (or many) models of behavior (e.g., binomial behavior with 90% chance of giving right answer) and some processing you'll do with the data (e.g., a two-tailed binomial test).
 
-### Meta analysis
+Bunny comes with two libraries with many common models of participants (in Bunny.ParticipantLibrary) and with common statistical tests and procedures (Bunny.TestLibrary).
 
-Coming soon
-
-### Pre-registration
-
-Coming soon
-
-# Creating experiment objects
-
-See example folder.
-
-### Experiment descriptions
-
-Coming soon
-
-### Through Bunny libraries
-
-Bunny comes with two libraries with common statistical tests (Bunny.TestLibrary) and models of participants (Bunny.ParticipantLibrary)
-
-### Manually
-
-Coming soon
+The easiest way to understand how this works is by looking at the examples.
 
 # Known issues:
 

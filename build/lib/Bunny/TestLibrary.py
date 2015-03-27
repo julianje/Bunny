@@ -51,11 +51,11 @@ def FisherExact(alpha=0.05):
 		return [1] if pval<=alpha else [0]
 	return F
 
-def MeanDifference(BootSamples=10000):
+def MeanDifference(BootSamples=10000,inputalpha=0.05):
 	"""
 	Create function that bootstraps the mean difference across conditions
 	"""
-	def F(Data,Samples=BootSamples,alpha=0.05):
+	def F(Data,Samples=BootSamples,alpha=inputalpha):
 		Conditions=Data.shape[0]
 		if Conditions<2:
 			print "Error: MeanDifference test needs at least two conditions"
@@ -89,14 +89,29 @@ def MeanDifference(BootSamples=10000):
 		return [final,outcome]
 	return F
 
-
-
-
-
-
-#def BinomialWithControl(TestType="TT",alpha=0.05):
-#	if TestType=="TT":
-#		def F(Data):
-#			if Data.shape[0]!=2:
-#				print "Error: BinomialWithControl needs exactly two conditions"
-#				return None
+def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
+	print "Creating binomial with control. Make sure the test model is input before the control model in the experiment object."
+	if TestType=="TT":
+		def F(Data):
+			Conditions = Data.shape[0]
+			if Conditions!=2:
+				print "Error: BinomialWithControl needs exactly two conditions"
+				return None
+				pvals = [scipy.stats.binom_test(Data[i].sum(),Data.shape[1],Bias) for i in range(Conditions)]
+				results = [i<alpha for i in pvals]
+				final = 1 if (results[0]==1 and results[1]==0) else 0
+				return [final,results,pvals]
+	elif TestType=="OT":
+		def F(Data):
+			Conditions = Data.shape[0]
+			if Conditions!=2:
+				print "Error: BinomialWithControl needs exactly two conditions"
+				return None
+				pvals = [scipy.stats.binom.sf(Data[i].sum()-1,Data.shape[1],Bias) for i in range(Conditions)]
+				results = [i<alpha for i in pvals]
+				final = 1 if (results[0]==1 and results[1]==0) else 0
+				return [final,results,pvals]
+	else:
+		print "Error: Binomial test must be one-tailed (OT) or two-tailed (TT)."
+		return None
+	return F
