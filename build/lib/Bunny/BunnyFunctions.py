@@ -2,6 +2,8 @@ from Experiment import *
 from Participant import *
 import matplotlib.pyplot as plt
 import sys
+import pickle
+import time
 
 def Explore(Exp,dimension="SampleSize"):
 	if not Exp.Validate():
@@ -86,8 +88,16 @@ def Inspect(Exp,RecomputePower=False):
 		else:
 			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n\n")
 
+def Save(Exp,Filename):
+	Filename = Filename + ".p"
+	pickle.dump(Exp,open(Filename, "wb"))
+
+def Load(Filename):
+	Experiment = pickle.load(open(Filename, "rb"))
+	return Experiment
+
 # Mid-level functions
-def ExploreSampleSize(Exp,lower=1,limit=-1,samples=50000):
+def ExploreSampleSize(Exp,lower=1,limit=-1,samples=10000):
 	if limit==-1:
 		print "No limit specified. Testing samples between 15 and 35 ..."
 		lower=15
@@ -96,11 +106,27 @@ def ExploreSampleSize(Exp,lower=1,limit=-1,samples=50000):
 	if lower>limit:
 		print "Error: Lower limit is higher than upper limit"
 		return None
+	print "Estimating time ...."
 	SampleSize=range(lower,limit+1)
 	CurrSampleSize=Exp.SampleSize
 	for i in SampleSize:
+		if i==lower:
+			start = time.time()
 		Exp.SetSampleSize(i)
 		Power.append(Exp.GetPower(samples))
+		if i==lower:
+			end = time.time()
+			secs = (end-start)*len(SampleSize)
+			sys.stdout.write("This will take at least ")
+			if (secs<60):
+				sys.stdout.write(str(round(secs,2))+ " seconds.\n")
+			else:
+				mins = secs*1.0/60
+				if (mins<60):
+					sys.stdout.write(str(round(mins,2))+ " minutes.\n")
+				else:
+					hours = mins*1.0/60
+					sys.stdout.write(str(round(hours,2))+ " hours.\n")
 	Exp.SampleSize=CurrSampleSize # Restore experiment object.
 	Exp.GetPower(samples)
 	return [SampleSize, Power]

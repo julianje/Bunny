@@ -18,3 +18,10 @@ Experiment = Bunny.Experiment([Child1,Child2,Child3],Test,"Play experiment")
 
 # Simulate experiments to find minimum sample size
 Bunny.Hop(Experiment,limit=50,power=0.95,samples=5000,Verbose=True)
+
+# Check power for 16 participants
+Experiment.SetSampleSize(16)
+Bunny.Inspect(Experiment)
+
+# Plot samplesize-power relation
+Bunny.Explore(Experiment)
