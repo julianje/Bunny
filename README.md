@@ -38,13 +38,3 @@ Experiment objects are a combination of one (or many) models of behavior (e.g., 
 Bunny comes with two libraries with many common models of participants (in Bunny.ParticipantLibrary) and with common statistical tests and procedures (Bunny.TestLibrary).
 
 The easiest way to understand how this works is by looking at the examples.
-
-# Known issues:
-
-Bunny's pre-registration uses openssl. If you're using anaconda you might get the warning:
-
-WARNING: can't open config file: /opt/anaconda1anaconda2anaconda3/ssl/openssl.cnf
-
-This is a known issue: https://github.com/ContinuumIO/anaconda-issues/issues/137
-
-A workaround for this will be included in Bunny soon.
