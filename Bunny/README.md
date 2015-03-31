@@ -34,6 +34,12 @@ you can manually override it later
 
     F(Lambda=1)
 
+##### Geometric agent
+
+Create a geometric distribution with mean 1/p
+
+    Bunny.ParticipantLibrary.Geometric(p)
+
 ##### Empirical agent
 
 You can also create an agent that samples from an empirical distribution. If your observations are 1, 1, 3, 4, and 7. You can use this distribution to build a participant model

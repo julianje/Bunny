@@ -6,12 +6,12 @@ import sys
 import pickle
 import time
 
-def Explore(Exp,filename=None):
+def Explore(Exp,lower=15,limit=35,filename=None):
 	if not Exp.Validate():
 		print "Error: Experiment failed validation."
 		return None
 	print "Exploring sample sizes ... "
-	res = ExploreSampleSize(Exp)
+	res = ExploreSampleSize(Exp,lower,limit)
 	PlotPowerSamples(res,filename)
 
 def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):

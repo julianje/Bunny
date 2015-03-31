@@ -35,3 +35,12 @@ def Empirical(List):
 	def F():
 		return random.choice((List))
 	return [F,"Empirically set behavior","None"]
+
+def Geometric(param):
+	"""
+	Generate a geometric distribution with parameter p (mean = 1/p)
+	"""
+	def F(p=param):
+		return np.random.geometric(p)
+	return [F,"Geometric distribution","Real"]
+

@@ -6,12 +6,12 @@ import sys
 import pickle
 import time
 
-def Explore(Exp,filename=None):
+def Explore(Exp,lower=15,limit=35,filename=None):
 	if not Exp.Validate():
 		print "Error: Experiment failed validation."
 		return None
 	print "Exploring sample sizes ... "
-	res = ExploreSampleSize(Exp)
+	res = ExploreSampleSize(Exp,lower,limit)
 	PlotPowerSamples(res,filename)
 
 def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
@@ -33,12 +33,12 @@ def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 	current = (upper-lower)/2+lower
 	if Verbose:
 		print "Searching for your sample size..."
+	underpowered=True
 	while True:
 		sys.stdout.write("Simulating with "+str(current)+" participants per condition... ")
 		sys.stdout.flush()
 		Exp.SetSampleSize(current)
 		p = Exp.GetPower(samples)
-		underpowered=True
 		if Verbose:
 			sys.stdout.write("Power="+str(p)+"\n")
 		if p < power:

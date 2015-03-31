@@ -35,9 +35,9 @@ Or explore the relationship between sample size and power
 
 	Bunny.Explore(Experiment)
 
-You can also save the output graph by giving a filename
+You can also save the output graph by giving a filename, but you'll also have to input the range
 
-	Bunny.Explore(Experiment,"MyImage.pdf")
+	Bunny.Explore(Experiment,15,35,"MyImage.pdf") # Test sample sizes between 15 and 35.
 
 supported formats are emf, eps, pdf, png, ps, raw, rgba, svg, and svgz (done through pyplot.savefig()).
 

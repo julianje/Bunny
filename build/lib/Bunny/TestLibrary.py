@@ -44,7 +44,7 @@ def TTest(alpha=0.05):
 			print "Error: T-test needs exactly two conditions"
 			return None
 		pval=scipy.stats.ttest_ind(Data[0],Data[1])[1]
-		return TestResults([1],TestName) if pval<=alpha else TestResults([0],TestName)
+		return TestResult(1,TestName) if pval<=alpha else TestResult(0,TestName)
 	return F
 
 def FisherExact(alpha=0.05):
@@ -56,7 +56,7 @@ def FisherExact(alpha=0.05):
 		V1=Data[0].sum(),Data.shape[1]-Data[0].sum()
 		V2=Data[1].sum(),Data.shape[1]-Data[1].sum()
 		pval=scipy.stats.fisher_exact([V1,V2])[1]
-		return TestResults([1],TestName) if pval<=alpha else TestResults([0],TestName)
+		return TestResult(1,TestName) if pval<=alpha else TestResult(0,TestName)
 	return F
 
 def MeanDifference(BootSamples=10000,inputalpha=0.05):
@@ -95,7 +95,7 @@ def MeanDifference(BootSamples=10000,inputalpha=0.05):
 					outcome.append(0)
 		# Once done, check if all tests succeeded
 		final = 1 if sum(outcome)==len(outcome) else 0
-		return TestResults(final,TestName,outcome)
+		return TestResult(final,TestName,outcome)
 	return F
 
 def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
@@ -110,7 +110,7 @@ def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
 				pvals = [scipy.stats.binom_test(Data[i].sum(),Data.shape[1],Bias) for i in range(Conditions)]
 				results = [i<alpha for i in pvals]
 				final = 1 if (results[0]==1 and results[1]==0) else 0
-				return TestResults(final,TestName,results,None,pvals)
+				return TestResult(final,TestName,results,None,pvals)
 	elif TestType=="OT":
 		TestName="First condition with one-tailed binomial test, and second condition as control."
 		def F(Data):
@@ -121,7 +121,7 @@ def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
 				pvals = [scipy.stats.binom.sf(Data[i].sum()-1,Data.shape[1],Bias) for i in range(Conditions)]
 				results = [i<alpha for i in pvals]
 				final = 1 if (results[0]==1 and results[1]==0) else 0
-				return TestResults(final,TestName,results,None,pvals)
+				return TestResult(final,TestName,results,None,pvals)
 	else:
 		print "Error: Binomial test must be one-tailed (OT) or two-tailed (TT)."
 		return None
