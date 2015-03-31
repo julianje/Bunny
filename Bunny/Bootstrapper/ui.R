@@ -2,7 +2,9 @@ library(shiny)
 
 shinyUI(fluidPage(
   # Title
-  img(src="BunnyLogo.png", align="center"),
+  HTML("<center>"),
+  img(src="BunnyLogo.png"),
+  HTML("</center>"),
   # Side bar
   sidebarLayout(
     sidebarPanel(
@@ -24,5 +26,7 @@ shinyUI(fluidPage(
     mainPanel(
       plotOutput("distPlot")
     )
-  )
+  ),
+  img(src="shiny_logo.png"),
+  h6("Powered by R.")
 ))
