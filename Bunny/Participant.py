@@ -1,82 +1,84 @@
 import sys
 
+
 class Participant(object):
-	"""
-	Participant class.
-	Contains a model of a participant.
 
-	Execute()  generates one sample
-	Sample(n) generates n samples
-	SetBehavior(f) sets function f as the behavior model
-	Validate() ensures the object has a function stored
-	AddName(N) set object name to N
-	Display(B) prints properties, B is boolean value indicating verbosity
-	"""
+    """
+    Participant class.
+    Contains a model of a participant.
 
-	def __init__(self,Behavior=None,Name="Participant_Object"):
-		if isinstance(Behavior, list):
-			# If the behavior is a list, then extract it's name
-			# and information about variation.
-			self.Behavior = Behavior[0]
-			if Name == "Participant_Object":
-				self.Name = Behavior[1]
-			else:
-				self.Name = Name
-			self.InputVariation = Behavior[2]
-		else:
-			# Otherwise the input is likely just a function
-			self.Behavior = Behavior
-			self.Name = Name
-			# No information about whether function takes arguments
-			self.InputVariation = "Unknown"
+    Execute()  generates one sample
+    Sample(n) generates n samples
+    SetBehavior(f) sets function f as the behavior model
+    Validate() ensures the object has a function stored
+    AddName(N) set object name to N
+    Display(B) prints properties, B is boolean value indicating verbosity
+    """
 
-	def Execute(self):
-		return self.Behavior()
+    def __init__(self, Behavior=None, Name="Participant_Object"):
+        if isinstance(Behavior, list):
+            # If the behavior is a list, then extract it's name
+            # and information about variation.
+            self.Behavior = Behavior[0]
+            if Name == "Participant_Object":
+                self.Name = Behavior[1]
+            else:
+                self.Name = Name
+            self.InputVariation = Behavior[2]
+        else:
+            # Otherwise the input is likely just a function
+            self.Behavior = Behavior
+            self.Name = Name
+            # No information about whether function takes arguments
+            self.InputVariation = "Unknown"
 
-	def Sample(self,Samples):
-		Outcome = [self.Execute() for _ in range(Samples)]
-		return Outcome
+    def Execute(self):
+        return self.Behavior()
 
-	def SetBehavior(self, Behavior, Name="Participant_Object"):
-		if isinstance(Behavior, list):
-			# If the behavior is a list, then extract it's name
-			# and information about variation.
-			self.Behavior = Behavior[0]
-			if Name == "Participant_Object":
-				self.Name = Behavior[1]
-			else:
-				self.Name = Name
-			self.InputVariation = Behavior[2]
-		else:
-			# Otherwise the input is likely just a function
-			self.Behavior = Behavior
-			# No information about whether function takes arguments
-			self.InputVariation = "Unknown"
-			# Replace name.
-			self.Name = Name
+    def Sample(self, Samples):
+        Outcome = [self.Execute() for _ in range(Samples)]
+        return Outcome
 
-	def AddName(self, Name):
-		self.Name = Name
+    def SetBehavior(self, Behavior, Name="Participant_Object"):
+        if isinstance(Behavior, list):
+            # If the behavior is a list, then extract it's name
+            # and information about variation.
+            self.Behavior = Behavior[0]
+            if Name == "Participant_Object":
+                self.Name = Behavior[1]
+            else:
+                self.Name = Name
+            self.InputVariation = Behavior[2]
+        else:
+            # Otherwise the input is likely just a function
+            self.Behavior = Behavior
+            # No information about whether function takes arguments
+            self.InputVariation = "Unknown"
+            # Replace name.
+            self.Name = Name
 
-	def Validate(self):
-		if self.Behavior==None:
-			print "ERROR: Participant object doesn't have a model of behavior.\nUse Participant.SetBehavior()"
-		elif not hasattr(self.Behavior, '__call__'):
-			print "ERROR: Cannot call behavior function."
-		else:
-			try:
-				self.Sample(1)
-			except:
-				print "Unexpected error in participant model!"
-				raise
-				return 0
-		return 1
+    def AddName(self, Name):
+        self.Name = Name
 
-	def Display(self, Full=True):
-		# Print class properties
-		if Full:
-			for (property, value) in vars(self).iteritems():
-				print property, ': ', value
-		else:
-			for (property, value) in vars(self).iteritems():
-				print property
+    def Validate(self):
+        if self.Behavior == None:
+            print "ERROR: Participant object doesn't have a model of behavior.\nUse Participant.SetBehavior()"
+        elif not hasattr(self.Behavior, '__call__'):
+            print "ERROR: Cannot call behavior function."
+        else:
+            try:
+                self.Sample(1)
+            except:
+                print "Unexpected error in participant model!"
+                raise
+                return 0
+        return 1
+
+    def Display(self, Full=True):
+        # Print class properties
+        if Full:
+            for (property, value) in vars(self).iteritems():
+                print property, ': ', value
+        else:
+            for (property, value) in vars(self).iteritems():
+                print property
