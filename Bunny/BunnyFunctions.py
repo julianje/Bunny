@@ -33,12 +33,12 @@ def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 	current = (upper-lower)/2+lower
 	if Verbose:
 		print "Searching for your sample size..."
+	underpowered=True
 	while True:
 		sys.stdout.write("Simulating with "+str(current)+" participants per condition... ")
 		sys.stdout.flush()
 		Exp.SetSampleSize(current)
 		p = Exp.GetPower(samples)
-		underpowered=True
 		if Verbose:
 			sys.stdout.write("Power="+str(p)+"\n")
 		if p < power:
