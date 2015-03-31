@@ -7,20 +7,22 @@ def Binomial(TestType="TT",alpha=0.05,Bias=0.5):
 	# Binomial test
 	if TestType=="TT":
 		def F(Data):
+			TestName="Two-tailed binomial test"
 			Conditions=Data.shape[0]
 			KeyStats = [Data[i].sum()*1.0/Data.shape[1] for i in range(Conditions)]
 			pvals=[scipy.stats.binom_test(Data[i].sum(),Data.shape[1],Bias) for i in range(Conditions)]
 			results = [i<alpha for i in pvals]
 			final = 1 if sum(results)==Conditions else 0
-			return TestResult(final,results,KeyStats,pvals)
+			return TestResult(final,TestName,results,KeyStats,pvals)
 	elif TestType=="OT":
 		def F(Data):
+			TestName="One-tailed binomial test"
 			Conditions=Data.shape[0]
 			KeyStats = [Data[i].sum()*1.0/Data.shape[1] for i in range(Conditions)]
 			pvals=[scipy.stats.binom.sf(Data[i].sum()-1,Data.shape[1],Bias) for i in range(Conditions)]
 			results = [i<alpha for i in pvals]
 			final = 1 if sum(results)==Conditions else 0
-			return TestResult(final,results,KeyStats,pvals)
+			return TestResult(final,TestName,results,KeyStats,pvals)
 	else:
 		print "Error: Binomial test must be one-tailed (OT) or two-tailed (TT)."
 		return None
@@ -29,29 +31,32 @@ def Binomial(TestType="TT",alpha=0.05,Bias=0.5):
 def Majority():
 	# Test for qualitative bias
 	def F(Data):
+		TestName="Testing if majority of data agrees with prediction"
 		Conditions=Data.shape[0]
 		results=[Data[i].sum()>Data.shape[1]*1.0/2 for i in range(Conditions)]
 		final = 1 if sum(results)==Conditions else 0
-		return TestResult(final,results)
+		return TestResult(final,TestName,results)
 
 def TTest(alpha=0.05):
 	def F(Data):
+		TestName="T-Test"
 		if Data.shape[0]!=2:
 			print "Error: T-test needs exactly two conditions"
 			return None
 		pval=scipy.stats.ttest_ind(Data[0],Data[1])[1]
-		return TestResults([1]) if pval<=alpha else TestResults([0])
+		return TestResults([1],TestName) if pval<=alpha else TestResults([0],TestName)
 	return F
 
 def FisherExact(alpha=0.05):
 	def F(Data):
+		TestName="Fisher exact test"
 		if Data.shape[0]!=2:
 			print "Error: Fisher exact test needs exactly two conditions"
 			return None
 		V1=Data[0].sum(),Data.shape[1]-Data[0].sum()
 		V2=Data[1].sum(),Data.shape[1]-Data[1].sum()
 		pval=scipy.stats.fisher_exact([V1,V2])[1]
-		return TestResults([1]) if pval<=alpha else TestResults([0])
+		return TestResults([1],TestName) if pval<=alpha else TestResults([0],TestName)
 	return F
 
 def MeanDifference(BootSamples=10000,inputalpha=0.05):
@@ -59,6 +64,7 @@ def MeanDifference(BootSamples=10000,inputalpha=0.05):
 	Create function that bootstraps the mean difference across conditions
 	"""
 	def F(Data,Samples=BootSamples,alpha=inputalpha):
+		TestName="Bootstrapped difference between means"
 		Conditions=Data.shape[0]
 		if Conditions<2:
 			print "Error: MeanDifference test needs at least two conditions"
@@ -89,12 +95,13 @@ def MeanDifference(BootSamples=10000,inputalpha=0.05):
 					outcome.append(0)
 		# Once done, check if all tests succeeded
 		final = 1 if sum(outcome)==len(outcome) else 0
-		return TestResults(final,outcome)
+		return TestResults(final,TestName,outcome)
 	return F
 
 def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
 	print "Creating binomial with control. Make sure the test model is input before the control model in the experiment object."
 	if TestType=="TT":
+		TestName="First condition with two-tailed binomial test, and second condition as control."
 		def F(Data):
 			Conditions = Data.shape[0]
 			if Conditions!=2:
@@ -103,8 +110,9 @@ def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
 				pvals = [scipy.stats.binom_test(Data[i].sum(),Data.shape[1],Bias) for i in range(Conditions)]
 				results = [i<alpha for i in pvals]
 				final = 1 if (results[0]==1 and results[1]==0) else 0
-				return TestResults(final,results,None,pvals)
+				return TestResults(final,TestName,results,None,pvals)
 	elif TestType=="OT":
+		TestName="First condition with one-tailed binomial test, and second condition as control."
 		def F(Data):
 			Conditions = Data.shape[0]
 			if Conditions!=2:
@@ -113,7 +121,7 @@ def BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5):
 				pvals = [scipy.stats.binom.sf(Data[i].sum()-1,Data.shape[1],Bias) for i in range(Conditions)]
 				results = [i<alpha for i in pvals]
 				final = 1 if (results[0]==1 and results[1]==0) else 0
-				return TestResults(final,results,None,pvals)
+				return TestResults(final,TestName,results,None,pvals)
 	else:
 		print "Error: Binomial test must be one-tailed (OT) or two-tailed (TT)."
 		return None

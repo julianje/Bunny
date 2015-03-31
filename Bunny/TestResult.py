@@ -2,11 +2,12 @@
 
 class TestResult(object):
 
-	def __init__(self,aggregatedecision=None,decisions=None,keystats=None,pvals=None):
+	def __init__(self,aggregatedecision=None,TestName=None,decisions=None,keystats=None,pvals=None):
 		self.aggregatedecision=aggregatedecision
 		self.decisions=decisions
 		self.keystats=keystats
 		self.pvals=pvals
+		self.testname=TestName
 
 	def HasPvals(self):
 		return 0 if self.pvals==None else 0
