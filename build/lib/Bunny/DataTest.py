@@ -25,6 +25,8 @@ class DataTest(object):
 		if self.Test == None:
 			print "ERROR. DataTest object doesn't have a statistical test.\nUse DataTest.SetTest()"
 			return 0
+		elif not hasattr(self.Test, '__call__'):
+			print "ERROR. Cannot call data function"
 		else:
 			return 1
 

@@ -30,7 +30,7 @@ def Empirical(List):
 	if sum(Lists)==len(Lists):
 		# Repeat each item by the number of observations
 		NewList = [[i[0]]*i[1] for i in List]
-		# Flatten resulting list
+		# Flatten list
 		List = [item for sublist in NewList for item in sublist]
 	def F():
 		return random.choice((List))

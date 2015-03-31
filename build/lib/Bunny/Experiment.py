@@ -1,5 +1,6 @@
 from Participant import *
 from DataTest import *
+from TestResult import *
 import numpy as np
 import warnings
 
@@ -58,7 +59,7 @@ class Experiment(object):
 		Extract final decision in each experiment
 		to calculate power.
 		"""
-		return [Data[i][0] for i in range(len(Data))]
+		return [Data[i].aggregatedecision for i in range(len(Data))]
 
 	def Replicate(self, N=1000):
 		"""
@@ -129,7 +130,20 @@ class Experiment(object):
 		"""
 		V1=self.ValidateParticipants()
 		V2=self.ValidateTest()
-		return 1 if ((V1==1) and (V2==1)) else 0
+		if (V1 and V2):
+			# Check if you can run an experiment through the whole process
+			try:
+				TestData = np.zeros((len(self.Participants),1))
+				for i in range(len(self.Participants)):
+					TestData[i] = self.Participants[i].Sample(1)
+				self.StatTest.RunTest(TestData)
+			except:
+				print "Behavior and test validated, but failed to connect!"
+				raise
+				return 0
+		else:
+			return 0
+		return 1
 
 	def ValidateParticipants(self):
 		"""

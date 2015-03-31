@@ -32,6 +32,7 @@ Bunny.Explore(Experiment)
 # If you want to know the power of a sample size
 Experiment.AddSampleSize(16)
 Bunny.Inspect(Experiment) # Inspection will now calculate the power for you
+Bunny.Imagine(Experiment) # Take a closer look at the distribution you'll expect
 
 # If you want to find the right sample size given power
 Experiment.SetPower(0.99) # I want a 99% change of experiment succeeding

@@ -1,6 +1,7 @@
 from Experiment import *
 from Participant import *
 import matplotlib.pyplot as plt
+import matplotlib.pylab as pylab
 import sys
 import pickle
 import time
@@ -70,7 +71,7 @@ def Inspect(Exp,RecomputePower=False):
 		sys.stdout.write("No sample size associated. Checking if I can estimate it... ")
 		if not Exp.Power==None:
 			sys.stdout.write("Yes.\nComputing smallest sample size needed... \n\n")
-			discard = Hop(Exp,limit=100,power=Exp.Power,samples=5000,Verbose=False)
+			Hop(Exp,limit=100,power=Exp.Power,samples=5000,Verbose=False)
 			sys.stdout.write("Sample size: " + str(Exp.SampleSize)+"\n")
 		else:
 			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n")
@@ -88,6 +89,30 @@ def Inspect(Exp,RecomputePower=False):
 			sys.stdout.write("Power: "+str(Exp.Power)+"\n")
 		else:
 			sys.stdout.write("No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n\n")
+
+def Imagine(Exp,samples=10000):
+	""" Plot key statistics """
+	if Exp.SampleSize==None:
+		print "ERROR: Need a sample size!"
+		return None
+	if len(Exp.Participants) == 1:
+		Res = Exp.Replicate(samples)
+		Stats = [Res[i].keystats[0] for i in range(samples)]
+		Decisions = [Res[i].aggregatedecision for i in range(samples)]
+		SuccessTrials_indices = [i for i, x in enumerate(Decisions) if x==1]
+		FailedTrials_indices = [i for i, x in enumerate(Decisions) if x==0]
+		SuccessTrials = [Stats[i] for i in SuccessTrials_indices]
+		FailedTrials = [Stats[i] for i in FailedTrials_indices]
+		Power = sum(Decisions)*1.0/len(Decisions)
+		pylab.figure()
+		n, bins, patches = pylab.hist([SuccessTrials, FailedTrials],10, histtype='bar', stacked=True, color=['green','red'], label=['Success','Fail'])
+		pylab.legend()
+		pylab.xlabel('Statistic value')
+		pylab.ylabel('Number of observations')
+		pylab.title(str(samples) + ' simulations with ' + str(Exp.SampleSize) + ' participants each. Power = ' + str(Power))
+		pylab.show()
+	else:
+		print "Bunny.Imagine(Exp) only works for experiments with one condition"
 
 def Save(Exp,Filename):
 	Filename = Filename + ".p"
@@ -128,6 +153,7 @@ def ExploreSampleSize(Exp,lower=1,limit=-1,samples=10000):
 				else:
 					hours = mins*1.0/60
 					sys.stdout.write(str(round(hours,2))+ " hours.\n")
+	print "Done!"
 	# Restore experiment object.
 	if CurrSampleSize == None:
 		Exp.ResetSampleSize()

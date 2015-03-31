@@ -1,3 +1,5 @@
+import sys
+
 class Participant(object):
 	"""
 	Participant class.
@@ -29,17 +31,11 @@ class Participant(object):
 			self.InputVariation = "Unknown"
 
 	def Execute(self):
-		if self.Validate():
-			return self.Behavior()
-		else:
-			return None
+		return self.Behavior()
 
 	def Sample(self,Samples):
-		if self.Validate():
-			Outcome = [self.Execute() for _ in range(Samples)]
-			return Outcome
-		else:
-			return None
+		Outcome = [self.Execute() for _ in range(Samples)]
+		return Outcome
 
 	def SetBehavior(self, Behavior, Name="Participant_Object"):
 		if isinstance(Behavior, list):
@@ -65,9 +61,16 @@ class Participant(object):
 	def Validate(self):
 		if self.Behavior==None:
 			print "ERROR: Participant object doesn't have a model of behavior.\nUse Participant.SetBehavior()"
-			return 0
+		elif not hasattr(self.Behavior, '__call__'):
+			print "ERROR: Cannot call behavior function."
 		else:
-			return 1
+			try:
+				self.Sample(1)
+			except:
+				print "Unexpected error in participant model!"
+				raise
+				return 0
+		return 1
 
 	def Display(self, Full=True):
 		# Print class properties

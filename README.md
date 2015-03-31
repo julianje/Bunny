@@ -2,7 +2,7 @@
 
 # About
 
-Bunny is a python package that does simulation-based power analyses. Meta-analyses pre-registrations coming soon.
+Bunny is a monte carlo power analyses (MCPA) package for python. Bunny takes a theory of how you think humans will behave (called a Participant object) and the analysis you plan to use on the data (called a DataTest object) and helps you understand your experiment by simulating the process of collecting and analysing your data thousands of times. Bunny can help you determine your experiment's power, the sample size you need, or simply to understand how different tests affect your study.
 
 # Installation
 
@@ -21,6 +21,10 @@ Calculate its power, given the sample size
 
 	Experiment.SetSampleSize(30)
 	Bunny.Inspect(Experiment)
+
+If you want to visualize the experiment's power just type
+
+	Bunny.Imagine(Experiment)
 
 Search for the smallest sample size with the desired power
 
