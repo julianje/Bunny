@@ -38,6 +38,7 @@ def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 		sys.stdout.flush()
 		Exp.SetSampleSize(current)
 		p = Exp.GetPower(samples)
+		underpowered=True
 		if Verbose:
 			sys.stdout.write("Power="+str(p)+"\n")
 		if p < power:
@@ -45,13 +46,18 @@ def Hop(Exp,limit=100,power=None,samples=10000,Verbose=True):
 			if (upper-lower)<=1:
 				Exp.SetSampleSize(upper)
 				Exp.UpdatePower()
+				# Check if Hopping worked
+				if underpowered:
+					print "Warning: Failed to converge. Bunny.Hop() assumes that the pattern your DataTest searches for exists.\nIf you're using a null model consider using Bunny.Explore() instead.\nIf you're using a non-random model then increase the search limit by sending a number greater than 100 as the second paramter of Bunny.Hop()"
 				return [upper,Exp.Power]
 			lower = current
 			current = (upper-lower)/2+lower
 		else:
+			underpowered=False
 			if (upper-lower)<=1:
 				Exp.SetSampleSize(lower)
 				Exp.UpdatePower()
+				# If you're here then at least one instance was over
 				return [lower,Exp.Power]
 			upper = current
 			current = (upper-lower)/2+lower
