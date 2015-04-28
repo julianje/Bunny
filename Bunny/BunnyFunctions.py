@@ -1,13 +1,40 @@
+# -*- coding: utf-8 -*-
+
+"""
+BunnyFunctions contains a set of high level functions to manipulate experiment objects.
+"""
+
+__license__ = "MIT"
+
 from Experiment import *
 from Participant import *
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 import sys
-import pickle
 import time
 
 
 def Explore(Exp, lower=15, limit=35, filename=None):
+    """
+    Plot an experiment's power as a function of the sample size.
+
+    Args:
+        Exp (Experiment): Experiment object to use (see Experiment class)
+
+        lower (int) : Smallest sample size to consider.
+
+        limit (int) : Highest sample size to consider.
+
+        filename (str) : Filename. If provided, the plot is saved instead of printed.
+
+    Returns:
+        None
+
+    >> Explore(MyExperiment)
+
+    >> Explore(MyExperiment,10,50,"Results.png")
+
+    """
     if not Exp.Validate():
         print "Error: Experiment failed validation."
         return None
@@ -17,8 +44,30 @@ def Explore(Exp, lower=15, limit=35, filename=None):
 
 
 def Hop(Exp, limit=100, power=None, samples=10000, Verbose=True):
-    if power == None:
-        if Exp.Power == None:
+    """
+    Determine an experiment's sample size through binary search.
+
+    Args:
+        Exp (Experiment): Experiment object to use (see Experiment class)
+
+        limit (int) : Highest sample size to consider.
+
+        power (float) : Experiment's power. If none is provided then the experiment object's power is used. If neither are determined, power is set to 0.95
+
+        samples (int) : Number of simulations for each sample size proposal.
+
+        Verbose (bool) : Run function silently or not.
+
+    Returns:
+        [Sample size, Power] (list) : First item shows smallest sample size and second item shows the corresponding power.
+
+    >> Hop(MyExperiment)
+
+    >> Hop(MyExperiment, limit=30, power=0.99, samples=100, Verbose=False)
+
+    """
+    if power is None:
+        if Exp.Power is None:
             if Verbose:
                 print "Setting power to 0.95."
             power = 0.95
@@ -69,19 +118,32 @@ def Hop(Exp, limit=100, power=None, samples=10000, Verbose=True):
 
 def Inspect(Exp, RecomputePower=False):
     """
-    Print report of an experiment object.
+    Print experiment details. Automatically computes sample size or power if possible.
+
+    Args:
+        Exp (Experiment): Experiment object to use (see Experiment class)
+
+        RecomputePower (bool) : If the experiment object has a power stored RecomputePower determines if it should be recomputed.
+
+    Returns:
+        None
+
+    >> Inspect(MyExperiment)
+
+    >> Inspect(MyExperiment,True)
+
     """
     sys.stdout.write("\nValidating experiment...")
     if Exp.Validate():
         sys.stdout.write(" SUCCESS\n\n")
     sys.stdout.write("Experiment name: " + str(Exp.Name) + "\n")
     sys.stdout.write("Statistical test: " + str(Exp.StatTest.Name) + "\n\n")
-    if not Exp.SampleSize == None:
+    if not Exp.SampleSize is None:
         sys.stdout.write("Sample size: " + str(Exp.SampleSize) + "\n")
     else:
         sys.stdout.write(
             "No sample size associated. Checking if I can estimate it... ")
-        if not Exp.Power == None:
+        if not Exp.Power is None:
             sys.stdout.write(
                 "Yes.\nComputing smallest sample size needed... \n\n")
             Hop(Exp, limit=100, power=Exp.Power, samples=5000, Verbose=False)
@@ -89,8 +151,8 @@ def Inspect(Exp, RecomputePower=False):
         else:
             sys.stdout.write(
                 "No.\nUse Bunny.Explore(Experiment) to see the relation between sampe size and power.\n")
-    if not Exp.Power == None:
-        if RecomputePower == True:
+    if not Exp.Power is None:
+        if RecomputePower is True:
             Exp.UpdatePower()
             sys.stdout.write(
                 "Power: " + str(Exp.Power) + " (Freshly computed!)\n")
@@ -99,7 +161,7 @@ def Inspect(Exp, RecomputePower=False):
                 "Power: " + str(Exp.Power) + " (Call Bunny.Inspect(True) to recompute power)\n")
     else:
         sys.stdout.write("No power. Checking if I can estimate it... ")
-        if not Exp.SampleSize == None:
+        if not Exp.SampleSize is None:
             sys.stdout.write("Yes.\n\n")
             Exp.UpdatePower()
             sys.stdout.write("Power: " + str(Exp.Power) + "\n")
@@ -109,8 +171,23 @@ def Inspect(Exp, RecomputePower=False):
 
 
 def Imagine(Exp, samples=10000):
-    """ Plot key statistics """
-    if Exp.SampleSize == None:
+    """
+    Plot the key statistics of a simulation along with the decision.
+
+    Args:
+        Exp (Experiment): Experiment object to use (see Experiment class)
+
+        samples (int) : Number of simulations to run
+
+    Returns:
+        None
+
+    >> Imagine(MyExperiment)
+
+    >> Imagine(MyExperiment,samples=10000)
+
+    """
+    if Exp.SampleSize is None:
         print "ERROR: Need a sample size!"
         return None
     if len(Exp.Participants) == 1:
@@ -134,20 +211,36 @@ def Imagine(Exp, samples=10000):
     else:
         print "Bunny.Imagine(Exp) only works for experiments with one condition"
 
-
-def Save(Exp, Filename):
-    Filename = Filename + ".p"
-    pickle.dump(Exp, open(Filename, "wb"))
-
-
-def Load(Filename):
-    Experiment = pickle.load(open(Filename, "rb"))
-    return Experiment
-
 # Mid-level functions
 
 
 def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):
+    """
+    Calculate an experiment's power for a range of sample sizes
+
+    This is the main function that Explore() uses to generate the data.
+
+        .. warning::
+
+           This function is for internal use only.
+
+    Args:
+        Exp (Experiment): Experiment object to use (see Experiment class)
+
+        lower (int) : Smallest sample size to consider.
+
+        limit (int) : Highest sample size to consider. If limit=-1 then samples sizes between 15 and 35 are tested
+
+        samples (int) : Number of simulations per proposal.
+
+    Returns:
+        [[Sample sizes], [Power]] (list) : [Sample sizes] is a list of sample sizes and [Power] is has the power associated with each sample size.
+
+    >> ExploreSampleSize(MyExperiment)
+
+    >> ExploreSampleSize(MyExperiment,10,50,10000)
+
+    """
     if limit == -1:
         print "No limit specified. Testing samples between 15 and 35 ..."
         lower = 15
@@ -179,7 +272,7 @@ def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):
                     sys.stdout.write(str(round(hours, 2)) + " hours.\n")
     print "Done!"
     # Restore experiment object.
-    if CurrSampleSize == None:
+    if CurrSampleSize is None:
         Exp.ResetSampleSize()
         Exp.ResetPower()
     else:
@@ -189,13 +282,34 @@ def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):
 
 
 def PlotPowerSamples(Samples, Filename=None):
+    """
+    Plot sample size and power relation
+
+    This is the function Explore() uses to produce its plots.
+
+        .. warning::
+
+           This function is for internal use only.
+
+    Args:
+        Samples (list): Samples should contain two lists. The first list contains sample sizes and second list contains the power associated with each sample size. ExploreSampleSize produces the output that can be sent directly to this function.
+
+        Filename (str) : When the function receives a filename, it saves the resulting plot instead of displaying it.
+
+    Returns:
+        None
+
+    >> res = ExploreSampleSize(Exp, 15, 20)
+    >> PlotPowerSamples(res)
+
+    """
     plt.clf()
     plt.plot(Samples[0], Samples[1], 'bo', Samples[0], Samples[1], 'k')
     plt.xlabel('Sample Size')
     plt.ylabel('Power')
     plt.title('Relation between sample size and power')
     plt.grid(True)
-    if Filename == None:
+    if Filename is None:
         plt.show()
     else:
         plt.savefig(Filename)

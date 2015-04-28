@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+
+"""
+TestLibrary contains a set of common statistical procedures.
+"""
+
+__license__ = "MIT"
+
 from TestResult import *
 import scipy.stats
 import scipy.misc
@@ -5,7 +13,19 @@ import numpy as np
 
 
 def Binomial(TestType="TT", alpha=0.05, Bias=0.5):
-    # Binomial test
+    """
+    Create a binomial test.
+
+    Args:
+        TestType (str): Must be 'OT' or 'TT' for one-tailed and two-tailed respectively
+        alpha (float): threshold at which the test succeeds
+        Bias (float): Weight of null hypothesis.
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.Binomial("OT",0.05,0.5)
+    """
     if TestType == "TT":
         def F(Data):
             TestName = "Two-tailed binomial test"
@@ -35,7 +55,17 @@ def Binomial(TestType="TT", alpha=0.05, Bias=0.5):
 
 
 def Majority():
-    # Test for qualitative bias
+    """
+    Create a qualitative majority test. The test succeeds if the majority of participants respond correctly and fails otherwise.
+
+    Args:
+        None
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.Majority()
+    """
     def F(Data):
         TestName = "Testing if majority of data agrees with prediction"
         Conditions = Data.shape[0]
@@ -46,6 +76,17 @@ def Majority():
 
 
 def TTest(alpha=0.05):
+    """
+    Create a T-Test
+
+    Args:
+        alpha (float): Threshold at which test succeeds
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.TTest()
+    """
     def F(Data):
         TestName = "T-Test"
         if Data.shape[0] != 2:
@@ -57,6 +98,17 @@ def TTest(alpha=0.05):
 
 
 def FisherExact(alpha=0.05):
+    """
+    Create a Fisher exact test. Function automatically checks if it can analyze input data.
+
+    Args:
+        alpha (float): Threshold at which test succeeds
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.FisherExact()
+    """
     def F(Data):
         TestName = "Fisher exact test"
         if Data.shape[0] != 2:
@@ -71,7 +123,17 @@ def FisherExact(alpha=0.05):
 
 def MeanDifference(BootSamples=10000, inputalpha=0.05):
     """
-    Create function that bootstraps the mean difference across conditions
+    Create a function that bootstraps the difference in the means of two conditions.
+    Function succeeds if 95 confidence interval does not cross 0.
+
+    Args:
+        BootSamples (int): Number of samples for bootstrap
+        inputalpha (float): Threshold at which test succeeds
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.MeanDifference()
     """
     def F(Data, Samples=BootSamples, alpha=inputalpha):
         TestName = "Bootstrapped difference between means"
@@ -87,9 +149,6 @@ def MeanDifference(BootSamples=10000, inputalpha=0.05):
                 # Compare the two conditions.
                 C1 = Data[Condition1]
                 C2 = Data[Condition2]
-                # Calculate their means
-                # mean1=np.mean(C1)
-                # mean2=np.mean(C2)
                 # Generate resampling indexes for bootstrap
                 indexes = np.random.randint(0, Size, (Samples, Size))
                 # Get the difference in means for each sample.
@@ -110,6 +169,19 @@ def MeanDifference(BootSamples=10000, inputalpha=0.05):
 
 
 def BinomialWithControl(TestType="TT", alpha=0.05, Bias=0.5):
+    """
+    Create a function that runs a binomial test on two conditions. Test succeeds only when first condition succeeds under a binomial and the second test fails.
+
+    Args:
+        TestType (str): Must be 'OT' or 'TT' for one-tailed and two-tailed respectively
+        alpha (float): threshold at which the test succeeds
+        Bias (float): Weight of null hypothesis.
+
+    Returns:
+        Function
+
+    >> MyFunction = TestLibrary.BinomialWithControl()
+    """
     print "Creating binomial with control. Make sure the test model is input before the control model in the experiment object."
     if TestType == "TT":
         TestName = "First condition with two-tailed binomial test, and second condition as control."

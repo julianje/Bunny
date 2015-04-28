@@ -1,0 +1,41 @@
+Classes
+=======
+
+.. autoclass:: Participant
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+.. autoclass:: DataTest
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+.. autoclass:: Experiment
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+Main functions
+==============
+
+.. automodule:: BunnyFunctions
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+.. automodule:: TestLibrary
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+.. automodule:: ParticipantLibrary
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:

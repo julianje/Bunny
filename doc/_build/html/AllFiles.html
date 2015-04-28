@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Classes &mdash; Bunny 1.00 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.00',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bunny 1.00 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Bunny 1.00 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-BunnyFunctions">
+<span id="main-functions"></span><h1>Main functions<a class="headerlink" href="#module-BunnyFunctions" title="Permalink to this headline">¶</a></h1>
+<p>BunnyFunctions contains a set of high level functions to manipulate experiment objects</p>
+<dl class="function">
+<dt id="BunnyFunctions.Explore">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Explore</code><span class="sig-paren">(</span><em>Exp</em>, <em>lower=15</em>, <em>limit=35</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Explore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot an experiment&#8217;s power as a function of the sample size.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>lower (int) : Smallest sample size to consider.</p>
+<p>limit (int) : Highest sample size to consider.</p>
+<p class="last">filename (str) : Filename. If provided, the plot is saved instead of printed.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Explore(MyExperiment)</p>
+<p>&gt;&gt; Explore(MyExperiment,10,50,&#8221;Results.png&#8221;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.ExploreSampleSize">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">ExploreSampleSize</code><span class="sig-paren">(</span><em>Exp</em>, <em>lower=1</em>, <em>limit=-1</em>, <em>samples=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.ExploreSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate an experiment&#8217;s power for a range of sample sizes</p>
+<p>This is the main function that Explore() uses to generate the data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>lower (int) : Smallest sample size to consider.</p>
+<p>limit (int) : Highest sample size to consider. If limit=-1 then samples sizes between 15 and 35 are tested</p>
+<p class="last">samples (int) : Number of simulations per proposal.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>[[Sample sizes], [Power]] (list) : [Sample sizes] is a list of sample sizes and [Power] is has the power associated with each sample size.</dd>
+</dl>
+<p>&gt;&gt; ExploreSampleSize(MyExperiment)</p>
+<p>&gt;&gt; ExploreSampleSize(MyExperiment,10,50,10000)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Hop">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Hop</code><span class="sig-paren">(</span><em>Exp</em>, <em>limit=100</em>, <em>power=None</em>, <em>samples=10000</em>, <em>Verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Hop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine an experiment&#8217;s sample size through binary search.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>limit (int) : Highest sample size to consider.</p>
+<p>power (float) : Experiment&#8217;s power. If none is provided then the experiment object&#8217;s power is used. If neither are determined, power is set to 0.95</p>
+<p>samples (int) : Number of simulations for each sample size proposal.</p>
+<p class="last">Verbose (bool) : Run function silently or not.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>[Sample size, Power] (list) : First item shows smallest sample size and second item shows the corresponding power.</dd>
+</dl>
+<p>&gt;&gt; Hop(MyExperiment)</p>
+<p>&gt;&gt; Hop(MyExperiment, limit=30, power=0.99, samples=100, Verbose=False)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Imagine">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Imagine</code><span class="sig-paren">(</span><em>Exp</em>, <em>samples=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Imagine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the key statistics of a simulation along with the decision.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p class="last">samples (int) : Number of simulations to run</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Imagine(MyExperiment)</p>
+<p>&gt;&gt; Imagine(MyExperiment,samples=10000)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Inspect">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Inspect</code><span class="sig-paren">(</span><em>Exp</em>, <em>RecomputePower=False</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Inspect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print experiment details. Automatically computes sample size or power if possible.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p class="last">RecomputePower (bool) : If the experiment object has a power stored RecomputePower determines if it should be recomputed.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Inspect(MyExperiment)</p>
+<p>&gt;&gt; Inspect(MyExperiment,True)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.PlotPowerSamples">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">PlotPowerSamples</code><span class="sig-paren">(</span><em>Samples</em>, <em>Filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.PlotPowerSamples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot sample size and power relation</p>
+<p>This is the function Explore() uses to produce its plots. This function is designed for internal use and should not be called directly.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Samples (list): Samples should contain two lists. The first list contains sample sizes and second list contains the power associated with each sample size. ExploreSampleSize produces the output that can be sent directly to this function.</p>
+<p class="last">Filename (str) : When the function receives a filename, it saves the resulting plot instead of displaying it.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; res = ExploreSampleSize(Exp, 15, 20)
+&gt;&gt; PlotPowerSamples(res)</p>
+</dd></dl>
+
+<span class="target" id="module-TestLibrary"></span><dl class="function">
+<dt id="TestLibrary.Binomial">
+<code class="descclassname">TestLibrary.</code><code class="descname">Binomial</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.Binomial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.BinomialWithControl">
+<code class="descclassname">TestLibrary.</code><code class="descname">BinomialWithControl</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.BinomialWithControl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.FisherExact">
+<code class="descclassname">TestLibrary.</code><code class="descname">FisherExact</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.FisherExact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.Majority">
+<code class="descclassname">TestLibrary.</code><code class="descname">Majority</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.Majority" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.MeanDifference">
+<code class="descclassname">TestLibrary.</code><code class="descname">MeanDifference</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.MeanDifference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create function that bootstraps the mean difference across conditions</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.TTest">
+<code class="descclassname">TestLibrary.</code><code class="descname">TTest</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.TTest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-ParticipantLibrary"></span><dl class="function">
+<dt id="ParticipantLibrary.Binomial">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">Binomial</code><span class="sig-paren">(</span><em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.Binomial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.Empirical">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">Empirical</code><span class="sig-paren">(</span><em>List</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.Empirical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.Geometric">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">Geometric</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.Geometric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a geometric distribution with parameter p (mean = 1/p)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.Poisson">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">Poisson</code><span class="sig-paren">(</span><em>L=1</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.Poisson" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.RandomAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">RandomAgent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.RandomAgent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/BunnyHead.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Classes</a></li>
+<li><a class="reference internal" href="#module-BunnyFunctions">Main functions</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/AllFiles.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Julian Jara-Ettinger.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/AllFiles.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

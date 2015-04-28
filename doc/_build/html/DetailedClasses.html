@@ -1,0 +1,874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Full API &mdash; Bunny 1.00 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.00',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bunny 1.00 documentation" href="index.html" />
+    <link rel="prev" title="Bunny objects" href="ObjectTypes.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ObjectTypes.html" title="Bunny objects"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Bunny 1.00 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="full-api">
+<h1>Full API<a class="headerlink" href="#full-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-Participant">
+<span id="participant-class"></span><h2>Participant class<a class="headerlink" href="#module-Participant" title="Permalink to this headline">¶</a></h2>
+<p>Participant objects wrap a behavior model with supporting functions.</p>
+<dl class="class">
+<dt id="Participant.Participant">
+<em class="property">class </em><code class="descclassname">Participant.</code><code class="descname">Participant</code><span class="sig-paren">(</span><em>Behavior=None</em>, <em>Name='Participant_Object'</em><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Participant class.
+Contains a model of a participant.</p>
+<p>Execute()  generates one sample
+Sample(n) generates n samples
+SetBehavior(f) sets function f as the behavior model
+Validate() ensures the object has a function stored
+AddName(N) set object name to N
+Display(B) prints properties, B is boolean value indicating verbosity</p>
+<dl class="method">
+<dt id="Participant.Participant.AddName">
+<code class="descname">AddName</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.AddName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Participant.Participant.Display">
+<code class="descname">Display</code><span class="sig-paren">(</span><em>Full=True</em><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.Display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print object attributes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Full (bool): When set to False, function only prints attribute names. Otherwise, it also prints its values.</dd>
+<dt>Returns:</dt>
+<dd>standard output summary</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Participant.Participant.Execute">
+<code class="descname">Execute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.Execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Participant.Participant.Sample">
+<code class="descname">Sample</code><span class="sig-paren">(</span><em>Samples</em><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.Sample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Participant.Participant.SetBehavior">
+<code class="descname">SetBehavior</code><span class="sig-paren">(</span><em>Behavior</em>, <em>Name='Participant_Object'</em><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.SetBehavior" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Participant.Participant.Validate">
+<code class="descname">Validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Participant.Participant.Validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-DataTest">
+<span id="datatest-class"></span><h2>DataTest class<a class="headerlink" href="#module-DataTest" title="Permalink to this headline">¶</a></h2>
+<p>DataTest objects wrap a statistical procedure with supporting functions.</p>
+<dl class="class">
+<dt id="DataTest.DataTest">
+<em class="property">class </em><code class="descclassname">DataTest.</code><code class="descname">DataTest</code><span class="sig-paren">(</span><em>Test=None</em>, <em>Name='DataTest_Object'</em><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="DataTest.DataTest.Display">
+<code class="descname">Display</code><span class="sig-paren">(</span><em>Full=True</em><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest.Display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print object attributes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Full (bool): When set to False, function only prints attribute names. Otherwise, it also prints its values.</dd>
+<dt>Returns:</dt>
+<dd>standard output summary</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="DataTest.DataTest.RunTest">
+<code class="descname">RunTest</code><span class="sig-paren">(</span><em>Data</em><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest.RunTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that DataTest object is usable and execute the test on a dataset.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="DataTest.DataTest.SetName">
+<code class="descname">SetName</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest.SetName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add name to DataTest object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Name (str): Name to assign</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyAnalysis.SetName(&#8220;My Analysis&#8221;)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="DataTest.DataTest.SetTest">
+<code class="descname">SetTest</code><span class="sig-paren">(</span><em>Test</em><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest.SetTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a test function to DataTest.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Test (function): A statistical procedure</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyAnalysis.SetTest(TestLibrary.Binomial())</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="DataTest.DataTest.Validate">
+<code class="descname">Validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DataTest.DataTest.Validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that DataTest object works.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>bool</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TestResult">
+<span id="testresult-class"></span><h2>TestResult class<a class="headerlink" href="#module-TestResult" title="Permalink to this headline">¶</a></h2>
+<p>TestResult objects store DataTest results and makes them easier to manipulate.</p>
+<p>This class is designed for internal code usage only.</p>
+<dl class="class">
+<dt id="TestResult.TestResult">
+<em class="property">class </em><code class="descclassname">TestResult.</code><code class="descname">TestResult</code><span class="sig-paren">(</span><em>aggregatedecision=None</em>, <em>TestName=None</em>, <em>decisions=None</em>, <em>keystats=None</em>, <em>pvals=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TestResult.TestResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="TestResult.TestResult.Display">
+<code class="descname">Display</code><span class="sig-paren">(</span><em>Full=True</em><span class="sig-paren">)</span><a class="headerlink" href="#TestResult.TestResult.Display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print object attributes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Full (bool): When set to False, function only prints attribute names. Otherwise, it also prints its values.</dd>
+<dt>Returns:</dt>
+<dd>standard output summary</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TestResult.TestResult.HasKeyStats">
+<code class="descname">HasKeyStats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestResult.TestResult.HasKeyStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if TestResult object has key statistics associated with it</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Bool</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TestResult.TestResult.HasPvals">
+<code class="descname">HasPvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestResult.TestResult.HasPvals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if TestResult object has p-values associated with it</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Bool</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Experiment">
+<span id="experiment-class"></span><h2>Experiment class<a class="headerlink" href="#module-Experiment" title="Permalink to this headline">¶</a></h2>
+<p>Experiment objects bind Participant and DataTest object together with supporting functions.</p>
+<dl class="class">
+<dt id="Experiment.Experiment">
+<em class="property">class </em><code class="descclassname">Experiment.</code><code class="descname">Experiment</code><span class="sig-paren">(</span><em>Participants=None</em>, <em>StatTest=None</em>, <em>Name='Experiment_Object'</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="Experiment.Experiment.AddParticipants">
+<code class="descname">AddParticipants</code><span class="sig-paren">(</span><em>Participants</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.AddParticipants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a participant model to experiment. In contrast to SetParticipants(), this function leaves past participant models instead of replacing them.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Participants (list or Participant object): A participant object or a list of participant objects</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.CollectData">
+<code class="descname">CollectData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.CollectData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate data collection once</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>NxM Array where N is the number of participant models and M is the number of conditions.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.Display">
+<code class="descname">Display</code><span class="sig-paren">(</span><em>Full=True</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.Display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print object attributes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Full (bool): When set to False, function only prints attribute names. Otherwise, it also prints its values.</dd>
+<dt>Returns:</dt>
+<dd>standard output summary</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.ExtractDecision">
+<code class="descname">ExtractDecision</code><span class="sig-paren">(</span><em>Data</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.ExtractDecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a DataTest&#8217;s final decision to calculate it&#8217;s power</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Data (TestResult): TestResult object.</dd>
+<dt>Returns:</dt>
+<dd>power (bool): Indicator about whether simulation fulfilled DataTest&#8217;s final criteria.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.GetPower">
+<code class="descname">GetPower</code><span class="sig-paren">(</span><em>samples=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.GetPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute an experiment&#8217;s power without storing it. This is function supports search over sample sizes and requires the experiment to have a set sample size.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>samples (int): Number of samples to use</dd>
+<dt>Returns:</dt>
+<dd>power (int): Experiment&#8217;s power</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.UpdatePower()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.Replicate">
+<code class="descname">Replicate</code><span class="sig-paren">(</span><em>N=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.Replicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate data collection and analysis N times</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>N (int): Number of experiment simulations.</dd>
+<dt>Returns:</dt>
+<dd>Results (list): List of N TestResult objects</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.ResetPower">
+<code class="descname">ResetPower</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.ResetPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove experiment&#8217;s power</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.ResetPower()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.ResetSampleSize">
+<code class="descname">ResetSampleSize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.ResetSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove experiment&#8217;s sample size</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.RunExperiment">
+<code class="descname">RunExperiment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.RunExperiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate data collection and analysis once</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>TestResult object</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.SetParticipants">
+<code class="descname">SetParticipants</code><span class="sig-paren">(</span><em>Participants</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.SetParticipants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert one or more participant models into the experiment</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Participants (Participant OR list): A participant object or a list of Participant objects</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.SetParticipants(MyParticipant)</p>
+<p>&gt;&gt; MyExperiment.SetParticipants([MyParticipantTest,MyParticipantControl]) # Test must know how to handle two conditions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.SetPower">
+<code class="descname">SetPower</code><span class="sig-paren">(</span><em>Power</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.SetPower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an experiment&#8217;s power. Some functions can fill this in automatically (e.g., Inspect). But you can also use it to find a sample size.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Power (float): Experiment&#8217;s power</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.SetPower(0.95)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.SetSampleSize">
+<code class="descname">SetSampleSize</code><span class="sig-paren">(</span><em>SampleSize</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.SetSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a sample size to Experiment.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>SampleSize (int): Experiment&#8217;s sample size</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.SetSampleSize(16)
+&gt;&gt; Inspect(MyExperiment) # Will use sample size to set power.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.SetTest">
+<code class="descname">SetTest</code><span class="sig-paren">(</span><em>Test</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.SetTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert DataTest object to experiment</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Test (DataTest object)</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.TestData">
+<code class="descname">TestData</code><span class="sig-paren">(</span><em>Data</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.TestData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run experiment&#8217;s data test on the result from a simulation</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Data (array): An array produced by Experiment.CollectData()</dd>
+<dt>Returns:</dt>
+<dd>TestResult object</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.UpdatePower">
+<code class="descname">UpdatePower</code><span class="sig-paren">(</span><em>samples=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.UpdatePower" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute and save experiment&#8217;s new power. Needs Experiment object to have a sample size.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>samples (int): Number of samples to use</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; MyExperiment.UpdatePower()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.Validate">
+<code class="descname">Validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.Validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that experiment object has all information necessary to run simulations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>bool</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.ValidateParticipants">
+<code class="descname">ValidateParticipants</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.ValidateParticipants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that Participant objects have all information necessary to run simulations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>bool</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Experiment.Experiment.ValidateTest">
+<code class="descname">ValidateTest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Experiment.Experiment.ValidateTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that DataTest objects have all information necessary to run simulations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>bool</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-BunnyFunctions">
+<span id="supporting-functions"></span><h2>Supporting functions<a class="headerlink" href="#module-BunnyFunctions" title="Permalink to this headline">¶</a></h2>
+<p>BunnyFunctions contains a set of high level functions to manipulate experiment objects.</p>
+<dl class="function">
+<dt id="BunnyFunctions.Explore">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Explore</code><span class="sig-paren">(</span><em>Exp</em>, <em>lower=15</em>, <em>limit=35</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Explore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot an experiment&#8217;s power as a function of the sample size.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>lower (int) : Smallest sample size to consider.</p>
+<p>limit (int) : Highest sample size to consider.</p>
+<p class="last">filename (str) : Filename. If provided, the plot is saved instead of printed.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Explore(MyExperiment)</p>
+<p>&gt;&gt; Explore(MyExperiment,10,50,&#8221;Results.png&#8221;)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.ExploreSampleSize">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">ExploreSampleSize</code><span class="sig-paren">(</span><em>Exp</em>, <em>lower=1</em>, <em>limit=-1</em>, <em>samples=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.ExploreSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate an experiment&#8217;s power for a range of sample sizes</p>
+<p>This is the main function that Explore() uses to generate the data.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>lower (int) : Smallest sample size to consider.</p>
+<p>limit (int) : Highest sample size to consider. If limit=-1 then samples sizes between 15 and 35 are tested</p>
+<p class="last">samples (int) : Number of simulations per proposal.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>[[Sample sizes], [Power]] (list) : [Sample sizes] is a list of sample sizes and [Power] is has the power associated with each sample size.</dd>
+</dl>
+<p>&gt;&gt; ExploreSampleSize(MyExperiment)</p>
+<p>&gt;&gt; ExploreSampleSize(MyExperiment,10,50,10000)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Hop">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Hop</code><span class="sig-paren">(</span><em>Exp</em>, <em>limit=100</em>, <em>power=None</em>, <em>samples=10000</em>, <em>Verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Hop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine an experiment&#8217;s sample size through binary search.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p>limit (int) : Highest sample size to consider.</p>
+<p>power (float) : Experiment&#8217;s power. If none is provided then the experiment object&#8217;s power is used. If neither are determined, power is set to 0.95</p>
+<p>samples (int) : Number of simulations for each sample size proposal.</p>
+<p class="last">Verbose (bool) : Run function silently or not.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>[Sample size, Power] (list) : First item shows smallest sample size and second item shows the corresponding power.</dd>
+</dl>
+<p>&gt;&gt; Hop(MyExperiment)</p>
+<p>&gt;&gt; Hop(MyExperiment, limit=30, power=0.99, samples=100, Verbose=False)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Imagine">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Imagine</code><span class="sig-paren">(</span><em>Exp</em>, <em>samples=10000</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Imagine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the key statistics of a simulation along with the decision.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p class="last">samples (int) : Number of simulations to run</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Imagine(MyExperiment)</p>
+<p>&gt;&gt; Imagine(MyExperiment,samples=10000)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.Inspect">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">Inspect</code><span class="sig-paren">(</span><em>Exp</em>, <em>RecomputePower=False</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Inspect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print experiment details. Automatically computes sample size or power if possible.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
+<p class="last">RecomputePower (bool) : If the experiment object has a power stored RecomputePower determines if it should be recomputed.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; Inspect(MyExperiment)</p>
+<p>&gt;&gt; Inspect(MyExperiment,True)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.PlotPowerSamples">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">PlotPowerSamples</code><span class="sig-paren">(</span><em>Samples</em>, <em>Filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.PlotPowerSamples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot sample size and power relation</p>
+<p>This is the function Explore() uses to produce its plots.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">Samples (list): Samples should contain two lists. The first list contains sample sizes and second list contains the power associated with each sample size. ExploreSampleSize produces the output that can be sent directly to this function.</p>
+<p class="last">Filename (str) : When the function receives a filename, it saves the resulting plot instead of displaying it.</p>
+</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>&gt;&gt; res = ExploreSampleSize(Exp, 15, 20)
+&gt;&gt; PlotPowerSamples(res)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TestLibrary">
+<span id="test-library"></span><h2>Test library<a class="headerlink" href="#module-TestLibrary" title="Permalink to this headline">¶</a></h2>
+<p>TestLibrary contains a set of common statistical procedures.</p>
+<dl class="function">
+<dt id="TestLibrary.Binomial">
+<code class="descclassname">TestLibrary.</code><code class="descname">Binomial</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.Binomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a binomial test.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>TestType (str): Must be &#8216;OT&#8217; or &#8216;TT&#8217; for one-tailed and two-tailed respectively
+alpha (float): threshold at which the test succeeds
+Bias (float): Weight of null hypothesis.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.Binomial(&#8220;OT&#8221;,0.05,0.5)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.BinomialWithControl">
+<code class="descclassname">TestLibrary.</code><code class="descname">BinomialWithControl</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.BinomialWithControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that runs a binomial test on two conditions. Test succeeds only when first condition succeeds under a binomial and the second test fails.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>TestType (str): Must be &#8216;OT&#8217; or &#8216;TT&#8217; for one-tailed and two-tailed respectively
+alpha (float): threshold at which the test succeeds
+Bias (float): Weight of null hypothesis.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.BinomialWithControl()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.FisherExact">
+<code class="descclassname">TestLibrary.</code><code class="descname">FisherExact</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.FisherExact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Fisher exact test. Function automatically checks if it can analyze input data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>alpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.FisherExact()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.Majority">
+<code class="descclassname">TestLibrary.</code><code class="descname">Majority</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.Majority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a qualitative majority test. The test succeeds if the majority of participants respond correctly and fails otherwise.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.Majority()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.MeanDifference">
+<code class="descclassname">TestLibrary.</code><code class="descname">MeanDifference</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.MeanDifference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that bootstraps the difference in the means of two conditions.
+Function succeeds if 95 confidence interval does not cross 0.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>BootSamples (int): Number of samples for bootstrap
+inputalpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.MeanDifference()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TestLibrary.TTest">
+<code class="descclassname">TestLibrary.</code><code class="descname">TTest</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#TestLibrary.TTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a T-Test</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>alpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.TTest()</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ParticipantLibrary">
+<span id="participant-library"></span><h2>Participant library<a class="headerlink" href="#module-ParticipantLibrary" title="Permalink to this headline">¶</a></h2>
+<p>ParticipantLibrary contains a set of common models of behavior.</p>
+<dl class="function">
+<dt id="ParticipantLibrary.BinomialAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">BinomialAgent</code><span class="sig-paren">(</span><em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.BinomialAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns 1 with a certain probability and 0 otherwise.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Bias (float): Probability of success</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.BinomialAgent(0.5)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.EmpiricalAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">EmpiricalAgent</code><span class="sig-paren">(</span><em>List</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.EmpiricalAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function defined from an empirical sample.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>List (list): List can be either a list of numbers, or a list of lists.
+when the List only contains numbers, the function randomly samples from that list.
+If the List is a lists of lists, the function interprets the first value of each list
+as an outcome and the second value as the number of observations of that value.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([1,3,3,4,5]) # Randomly sample from these numbers</p>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([0,1,1,1]) # Randomly sample from these numbers</p>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([[1,3],[0,1]]) # Equivalent to above</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.GeometricAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">GeometricAgent</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.GeometricAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns a sample from a geometric distribution.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>param (float): Geometric distributions&#8217; parameter. The mean of the distribution is 1/param</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.PoissonAgent(4)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.PoissonAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">PoissonAgent</code><span class="sig-paren">(</span><em>L=1</em><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.PoissonAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns a sample from a poisson distribution.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>L (float): Mean of the distribution</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.PoissonAgent(4)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ParticipantLibrary.RandomAgent">
+<code class="descclassname">ParticipantLibrary.</code><code class="descname">RandomAgent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ParticipantLibrary.RandomAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns floats between 0 and 1.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.RandomAgent()</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/BunnyHead.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Full API</a><ul>
+<li><a class="reference internal" href="#module-Participant">Participant class</a></li>
+<li><a class="reference internal" href="#module-DataTest">DataTest class</a></li>
+<li><a class="reference internal" href="#module-TestResult">TestResult class</a></li>
+<li><a class="reference internal" href="#module-Experiment">Experiment class</a></li>
+<li><a class="reference internal" href="#module-BunnyFunctions">Supporting functions</a></li>
+<li><a class="reference internal" href="#module-TestLibrary">Test library</a></li>
+<li><a class="reference internal" href="#module-ParticipantLibrary">Participant library</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ObjectTypes.html"
+                        title="previous chapter">Bunny objects</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/DetailedClasses.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Julian Jara-Ettinger.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/DetailedClasses.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

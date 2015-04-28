@@ -1,32 +1,22 @@
-![Bunny](Logos/BunnyLogo.png)
+![Bunny](Logos/bunny_longform.png)
 
 # About
 
-Bunny is a monte carlo power analyses (MCPA) package for python. Bunny takes a theory of how you think humans will behave (called a Participant object) and the analysis you plan to use on the data (called a DataTest object) and helps you understand your experiment by simulating the process of collecting and analysing your data thousands of times. Bunny can help you determine your experiment's power, the sample size you need, or simply to understand how different tests affect your study.
+Bunny is a monte carlo power analyses (MCPA) package for python. Bunny takes a theory of how you think humans will behave (called a Participant) and the analysis you plan to use on the data (called a DataTest) and helps you understand your experiment by simulating the process of collecting and analysing your data thousands of times. Bunny can help you determine your experiment's power, the sample size you need, or simply to understand how different tests affect your study.
 
-# Installation
+# Usage
 
-To install download the source code and on a terminal run
-
-	python setup.py install
-	pip uninstall Bunny
-
-# Main usage
-
-### Power analysis
-
-Given an experiment (See example folder on how to build experiments), Bunny can ...
+Bunny's main objects are Experiments, a combination of a formal theory of how you think participants will behave and a statistical procedure you plan to use on your data. If you use Bunny's libraries, you can build an Experiment in as little as three lines of code. Implementing your own is also simple. Once you have an experiment, Bunny can ...
 
 Calculate its power, given the sample size
 
-	Experiment.SetSampleSize(30)
 	Bunny.Inspect(Experiment)
 
-If you want to visualize the experiment's power just type
+Help you visualize the experiment's power
 
 	Bunny.Imagine(Experiment)
 
-Search for the smallest sample size with the desired power
+Find the sample size you need given a power
 
 	Experiment.SetPower(0.95)
 	Bunny.Hop(Experiment)
@@ -35,16 +25,23 @@ Or explore the relationship between sample size and power
 
 	Bunny.Explore(Experiment)
 
-You can also save the output graph by giving a filename, but you'll also have to input the range
+# Get started
 
-	Bunny.Explore(Experiment,15,35,"MyImage.pdf") # Test sample sizes between 15 and 35.
+To get started visit the [wiki](https://github.com/julianje/Bunny/wiki) or look at the examples.
 
-supported formats are emf, eps, pdf, png, ps, raw, rgba, svg, and svgz (done through pyplot.savefig()).
+# Installation
 
-# Experiment objects
+To install download the source code and on a terminal run
 
-Experiment objects are a combination of one (or many) models of behavior (e.g., binomial behavior with 90% chance of giving right answer) and some processing you'll do with the data (e.g., a two-tailed binomial test).
+	python setup.py install
+	pip uninstall Bunny
 
-Bunny comes with two libraries with many common models of participants (in Bunny.ParticipantLibrary) and with common statistical tests and procedures (Bunny.TestLibrary).
+# License
 
-The easiest way to understand how this works is by looking at the examples.
+Bunny is available through an MIT license.
+
+# TODO
+
+* Support finding parameters in behavior models given a desired power and sample size
+
+* Allow model objects to be saved.

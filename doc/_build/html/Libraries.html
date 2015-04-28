@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Libraries &mdash; Bunny 1.00 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.00',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bunny 1.00 documentation" href="index.html" />
+    <link rel="next" title="Bunny objects" href="ObjectTypes.html" />
+    <link rel="prev" title="Main functions" href="SupportingFunctions.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ObjectTypes.html" title="Bunny objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SupportingFunctions.html" title="Main functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Bunny 1.00 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="libraries">
+<h1>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="participant-library">
+<h2>Participant Library<a class="headerlink" href="#participant-library" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#module-ParticipantLibrary" title="ParticipantLibrary"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary</span></code></a></td>
+<td>ParticipantLibrary contains a set of common models of behavior.</td>
+</tr>
+</tbody>
+</table>
+<p>Current functions in the participant library:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#ParticipantLibrary.RandomAgent" title="ParticipantLibrary.RandomAgent"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.RandomAgent</span></code></a>()</td>
+<td>Create a function that returns floats between 0 and 1.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#ParticipantLibrary.BinomialAgent" title="ParticipantLibrary.BinomialAgent"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.BinomialAgent</span></code></a>([Bias])</td>
+<td>Create a function that returns 1 with a certain probability and 0 otherwise.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#ParticipantLibrary.PoissonAgent" title="ParticipantLibrary.PoissonAgent"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.PoissonAgent</span></code></a>([L])</td>
+<td>Create a function that returns a sample from a poisson distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#ParticipantLibrary.EmpiricalAgent" title="ParticipantLibrary.EmpiricalAgent"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.EmpiricalAgent</span></code></a>(List)</td>
+<td>Create a function defined from an empirical sample</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#ParticipantLibrary.GeometricAgent" title="ParticipantLibrary.GeometricAgent"><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.GeometricAgent</span></code></a>(param)</td>
+<td>Create a function that returns a sample from a geometric distribution.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="test-library">
+<h2>Test Library<a class="headerlink" href="#test-library" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary</span></code></td>
+<td>TestLibrary contains a set of common statistical procedures.</td>
+</tr>
+</tbody>
+</table>
+<p>Current function in the test library:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.Binomial</span></code>([TestType,&nbsp;alpha,&nbsp;Bias])</td>
+<td>Create a binomial test.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.Majority</span></code>()</td>
+<td>Create a qualitative majority test.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.TTest</span></code>([alpha])</td>
+<td>Create a T-Test</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.FisherExact</span></code>([alpha])</td>
+<td>Create a Fisher exact test.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.MeanDifference</span></code>([BootSamples,&nbsp;...])</td>
+<td>Create a function that bootstraps the difference in the means of two conditions.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.BinomialWithControl</span></code>([TestType,&nbsp;...])</td>
+<td>Create a function that runs a binomial test on two conditions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/BunnyHead.jpg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Libraries</a><ul>
+<li><a class="reference internal" href="#participant-library">Participant Library</a></li>
+<li><a class="reference internal" href="#test-library">Test Library</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="SupportingFunctions.html"
+                        title="previous chapter">Main functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ObjectTypes.html"
+                        title="next chapter">Bunny objects</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Libraries.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Julian Jara-Ettinger.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/Libraries.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
