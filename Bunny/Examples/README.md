@@ -2,4 +2,4 @@
 
 # Examples
 
-Start with the simple binomial test!
+These files show examples on how to use Bunny. 2AFC_task.py is the best place to start.

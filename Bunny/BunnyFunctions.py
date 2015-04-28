@@ -188,10 +188,13 @@ def Imagine(Exp, samples=10000):
 
     """
     if Exp.SampleSize is None:
-        print "ERROR: Need a sample size!"
+        print "ERROR: Need a sample size! (Use SetSampleSize())"
         return None
     if len(Exp.Participants) == 1:
         Res = Exp.Replicate(samples)
+        if not (Res[0].HasKeyStats):
+            print "ERROR: DataTest has no key statistics to plot!"
+            return None
         Stats = [Res[i].keystats[0] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
         SuccessTrials_indices = [i for i, x in enumerate(Decisions) if x == 1]

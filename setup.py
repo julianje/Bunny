@@ -5,7 +5,7 @@ def readme():
 		return f.read()
 
 setup(name='Bunny',
-	version='0.1.3',
+	version='0.2.0',
 	description='Hop around the experiment space.',
 	long_description=readme(),
 	url='http://gibthub.com/julianje/bunny',

@@ -1,8 +1,13 @@
-import sys
+# -*- coding: utf-8 -*-
+
+"""
+Participant objects wrap a behavior model with supporting functions.
+"""
+
+__license__ = "MIT"
 
 
 class Participant(object):
-
     """
     Participant class.
     Contains a model of a participant.
@@ -16,6 +21,17 @@ class Participant(object):
     """
 
     def __init__(self, Behavior=None, Name="Participant_Object"):
+        """
+        Participant class.
+        Contains a model of a participant.
+
+        Execute()  generates one sample
+        Sample(n) generates n samples
+        SetBehavior(f) sets function f as the behavior model
+        Validate() ensures the object has a function stored
+        AddName(N) set object name to N
+        Display(B) prints properties, B is boolean value indicating verbosity
+        """
         if isinstance(Behavior, list):
             # If the behavior is a list, then extract it's name
             # and information about variation.
@@ -61,7 +77,7 @@ class Participant(object):
         self.Name = Name
 
     def Validate(self):
-        if self.Behavior == None:
+        if self.Behavior is None:
             print "ERROR: Participant object doesn't have a model of behavior.\nUse Participant.SetBehavior()"
         elif not hasattr(self.Behavior, '__call__'):
             print "ERROR: Cannot call behavior function."
@@ -75,7 +91,19 @@ class Participant(object):
         return 1
 
     def Display(self, Full=True):
-        # Print class properties
+        """
+        Print object attributes.
+
+        .. warning::
+
+           This function is for internal use only.
+
+        Args:
+            Full (bool): When set to False, function only prints attribute names. Otherwise, it also prints its values.
+
+        Returns:
+            standard output summary
+        """
         if Full:
             for (property, value) in vars(self).iteritems():
                 print property, ': ', value
