@@ -4,28 +4,28 @@ Libraries
 Participant Library
 ===================
 
-.. autosummary:: ParticipantLibrary
+.. autosummary:: Behaviors
 
-Current functions in the participant library:
+Current functions in the behavior library:
 
 .. autosummary::
-   ParticipantLibrary.RandomAgent
-   ParticipantLibrary.BinomialAgent
-   ParticipantLibrary.PoissonAgent
-   ParticipantLibrary.EmpiricalAgent
-   ParticipantLibrary.GeometricAgent
+   Behaviors.RandomAgent
+   Behaviors.BinomialAgent
+   Behaviors.PoissonAgent
+   Behaviors.EmpiricalAgent
+   Behaviors.GeometricAgent
 
 Test Library
 ============
 
-.. autosummary:: TestLibrary
+.. autosummary:: Tests
 
 Current function in the test library:
 
 .. autosummary::
-   TestLibrary.Binomial
-   TestLibrary.Majority
-   TestLibrary.TTest
-   TestLibrary.FisherExact
-   TestLibrary.MeanDifference
-   TestLibrary.BinomialWithControl
+   Tests.BinomialTest
+   Tests.MajorityTest
+   Tests.TTestTest
+   Tests.FisherExactTest
+   Tests.MeanDifferenceTest
+   Tests.BinomialWithControlTest

@@ -641,11 +641,167 @@ Display(B) prints properties, B is boolean value indicating verbosity</p>
 </dd></dl>
 
 </div>
-<div class="section" id="test-library">
-<h2>Test library<a class="headerlink" href="#test-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Tests">
+<span id="test-library"></span><h2>Test library<a class="headerlink" href="#module-Tests" title="Permalink to this headline">¶</a></h2>
+<p>TestLibrary contains a set of common statistical procedures.</p>
+<dl class="function">
+<dt id="Tests.BinomialTest">
+<code class="descclassname">Tests.</code><code class="descname">BinomialTest</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.BinomialTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a binomial test.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>TestType (str): Must be &#8216;OT&#8217; or &#8216;TT&#8217; for one-tailed and two-tailed respectively
+alpha (float): threshold at which the test succeeds
+Bias (float): Weight of null hypothesis.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.Binomial(&#8220;OT&#8221;,0.05,0.5)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tests.BinomialWithControlTest">
+<code class="descclassname">Tests.</code><code class="descname">BinomialWithControlTest</code><span class="sig-paren">(</span><em>TestType='TT'</em>, <em>alpha=0.05</em>, <em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.BinomialWithControlTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that runs a binomial test on two conditions. Test succeeds only when first condition succeeds under a binomial and the second test fails.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>TestType (str): Must be &#8216;OT&#8217; or &#8216;TT&#8217; for one-tailed and two-tailed respectively
+alpha (float): threshold at which the test succeeds
+Bias (float): Weight of null hypothesis.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.BinomialWithControl()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tests.FisherExactTest">
+<code class="descclassname">Tests.</code><code class="descname">FisherExactTest</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.FisherExactTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Fisher exact test. Function automatically checks if it can analyze input data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>alpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.FisherExact()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tests.MajorityTest">
+<code class="descclassname">Tests.</code><code class="descname">MajorityTest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Tests.MajorityTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a qualitative majority test. The test succeeds if the majority of participants respond correctly and fails otherwise.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.Majority()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tests.MeanDifferenceTest">
+<code class="descclassname">Tests.</code><code class="descname">MeanDifferenceTest</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.MeanDifferenceTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that bootstraps the difference in the means of two conditions.
+Function succeeds if 95 confidence interval does not cross 0.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>BootSamples (int): Number of samples for bootstrap
+inputalpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.MeanDifference()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Tests.TTest">
+<code class="descclassname">Tests.</code><code class="descname">TTest</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.TTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a T-Test</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>alpha (float): Threshold at which test succeeds</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = TestLibrary.TTest()</p>
+</dd></dl>
+
 </div>
-<div class="section" id="participant-library">
-<h2>Participant library<a class="headerlink" href="#participant-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Behaviors">
+<span id="participant-library"></span><h2>Participant library<a class="headerlink" href="#module-Behaviors" title="Permalink to this headline">¶</a></h2>
+<p>ParticipantLibrary contains a set of common models of behavior.</p>
+<dl class="function">
+<dt id="Behaviors.BinomialAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">BinomialAgent</code><span class="sig-paren">(</span><em>Bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.BinomialAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns 1 with a certain probability and 0 otherwise.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Bias (float): Probability of success</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.BinomialAgent(0.5)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Behaviors.EmpiricalAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">EmpiricalAgent</code><span class="sig-paren">(</span><em>List</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.EmpiricalAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function defined from an empirical sample.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>List (list): List can be either a list of numbers, or a list of lists.
+when the List only contains numbers, the function randomly samples from that list.
+If the List is a lists of lists, the function interprets the first value of each list
+as an outcome and the second value as the number of observations of that value.</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([1,3,3,4,5]) # Randomly sample from these numbers</p>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([0,1,1,1]) # Randomly sample from these numbers</p>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.EmpiricalAgent([[1,3],[0,1]]) # Equivalent to above</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Behaviors.GeometricAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">GeometricAgent</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.GeometricAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns a sample from a geometric distribution.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>param (float): Geometric distributions&#8217; parameter. The mean of the distribution is 1/param</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.PoissonAgent(4)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Behaviors.PoissonAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">PoissonAgent</code><span class="sig-paren">(</span><em>L=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.PoissonAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns a sample from a poisson distribution.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>L (float): Mean of the distribution</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.PoissonAgent(4)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Behaviors.RandomAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">RandomAgent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.RandomAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns floats between 0 and 1.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = ParticipantLibrary.RandomAgent()</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -666,8 +822,8 @@ Display(B) prints properties, B is boolean value indicating verbosity</p>
 <li><a class="reference internal" href="#module-TestResult">TestResult class</a></li>
 <li><a class="reference internal" href="#module-Experiment">Experiment class</a></li>
 <li><a class="reference internal" href="#module-BunnyFunctions">Supporting functions</a></li>
-<li><a class="reference internal" href="#test-library">Test library</a></li>
-<li><a class="reference internal" href="#participant-library">Participant library</a></li>
+<li><a class="reference internal" href="#module-Tests">Test library</a></li>
+<li><a class="reference internal" href="#module-Behaviors">Participant library</a></li>
 </ul>
 </li>
 </ul>

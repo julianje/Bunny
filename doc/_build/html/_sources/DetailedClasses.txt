@@ -49,7 +49,7 @@ Supporting functions
 Test library
 ============
 
-.. automodule:: TestLibrary
+.. automodule:: Tests
    :members:
    :undoc-members:
    :inherited-members:
@@ -58,7 +58,7 @@ Test library
 Participant library
 ===================
 
-.. automodule:: ParticipantLibrary
+.. automodule:: Behaviors
    :members:
    :undoc-members:
    :inherited-members:

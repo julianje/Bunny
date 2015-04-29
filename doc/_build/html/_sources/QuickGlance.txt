@@ -16,5 +16,5 @@ Click below to see details on Bunny's classes, libraries, and functions.
    Experiment
    Participant
    TestResult
-   ParticipantLibrary
-   TestLibrary
+   Behaviors
+   Tests

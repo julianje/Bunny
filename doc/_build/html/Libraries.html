@@ -66,32 +66,32 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#module-Behaviors" title="Behaviors"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors</span></code></a></td>
+<td>ParticipantLibrary contains a set of common models of behavior.</td>
 </tr>
 </tbody>
 </table>
-<p>Current functions in the participant library:</p>
+<p>Current functions in the behavior library:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.RandomAgent</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#Behaviors.RandomAgent" title="Behaviors.RandomAgent"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors.RandomAgent</span></code></a>()</td>
+<td>Create a function that returns floats between 0 and 1.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.BinomialAgent</span></code></td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#Behaviors.BinomialAgent" title="Behaviors.BinomialAgent"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors.BinomialAgent</span></code></a>([Bias])</td>
+<td>Create a function that returns 1 with a certain probability and 0 otherwise.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.PoissonAgent</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#Behaviors.PoissonAgent" title="Behaviors.PoissonAgent"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors.PoissonAgent</span></code></a>([L])</td>
+<td>Create a function that returns a sample from a poisson distribution.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.EmpiricalAgent</span></code></td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#Behaviors.EmpiricalAgent" title="Behaviors.EmpiricalAgent"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors.EmpiricalAgent</span></code></a>(List)</td>
+<td>Create a function defined from an empirical sample.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParticipantLibrary.GeometricAgent</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#Behaviors.GeometricAgent" title="Behaviors.GeometricAgent"><code class="xref py py-obj docutils literal"><span class="pre">Behaviors.GeometricAgent</span></code></a>(param)</td>
+<td>Create a function that returns a sample from a geometric distribution.</td>
 </tr>
 </tbody>
 </table>
@@ -104,8 +104,8 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#module-Tests" title="Tests"><code class="xref py py-obj docutils literal"><span class="pre">Tests</span></code></a></td>
+<td>TestLibrary contains a set of common statistical procedures.</td>
 </tr>
 </tbody>
 </table>
@@ -116,23 +116,23 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.Binomial</span></code></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#Tests.BinomialTest" title="Tests.BinomialTest"><code class="xref py py-obj docutils literal"><span class="pre">Tests.BinomialTest</span></code></a>([TestType,&nbsp;alpha,&nbsp;Bias])</td>
+<td>Create a binomial test.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#Tests.MajorityTest" title="Tests.MajorityTest"><code class="xref py py-obj docutils literal"><span class="pre">Tests.MajorityTest</span></code></a>()</td>
+<td>Create a qualitative majority test.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Tests.TTestTest</span></code></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.Majority</span></code></td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#Tests.FisherExactTest" title="Tests.FisherExactTest"><code class="xref py py-obj docutils literal"><span class="pre">Tests.FisherExactTest</span></code></a>([alpha])</td>
+<td>Create a Fisher exact test.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.TTest</span></code></td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="DetailedClasses.html#Tests.MeanDifferenceTest" title="Tests.MeanDifferenceTest"><code class="xref py py-obj docutils literal"><span class="pre">Tests.MeanDifferenceTest</span></code></a>([BootSamples,&nbsp;...])</td>
+<td>Create a function that bootstraps the difference in the means of two conditions.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.FisherExact</span></code></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.MeanDifference</span></code></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TestLibrary.BinomialWithControl</span></code></td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="DetailedClasses.html#Tests.BinomialWithControlTest" title="Tests.BinomialWithControlTest"><code class="xref py py-obj docutils literal"><span class="pre">Tests.BinomialWithControlTest</span></code></a>([TestType,&nbsp;...])</td>
+<td>Create a function that runs a binomial test on two conditions.</td>
 </tr>
 </tbody>
 </table>
