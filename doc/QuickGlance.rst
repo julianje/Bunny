@@ -4,7 +4,7 @@ At a glance
 .. figure:: ../Logos/bunny_text.png
    :align:   center
 
-Bunny is a python package for simulating the process of collecting and analysing data. It helps you understand the advantages and caveats of using different tests, and it helps you determine your experiment's power and choose an appropriate sample size.
+Bunny is a python package for simulating the process of collecting and analyzing data. It helps you understand the advantages and caveats of using different tests, and it helps you determine your experiment's power and choose an appropriate sample size.
 
 Get Bunny: `https://github.com/julianje/Bunny <https://github.com/julianje/Bunny>`_
 
