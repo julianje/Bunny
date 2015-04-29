@@ -12,7 +12,7 @@ import scipy.misc
 import numpy as np
 
 
-def Binomial(TestType="TT", alpha=0.05, Bias=0.5):
+def BinomialTest(TestType="TT", alpha=0.05, Bias=0.5):
     """
     Create a binomial test.
 
@@ -54,7 +54,7 @@ def Binomial(TestType="TT", alpha=0.05, Bias=0.5):
     return F
 
 
-def Majority():
+def MajorityTest():
     """
     Create a qualitative majority test. The test succeeds if the majority of participants respond correctly and fails otherwise.
 
@@ -97,7 +97,7 @@ def TTest(alpha=0.05):
     return F
 
 
-def FisherExact(alpha=0.05):
+def FisherExactTest(alpha=0.05):
     """
     Create a Fisher exact test. Function automatically checks if it can analyze input data.
 
@@ -121,7 +121,7 @@ def FisherExact(alpha=0.05):
     return F
 
 
-def MeanDifference(BootSamples=10000, inputalpha=0.05):
+def MeanDifferenceTest(BootSamples=10000, inputalpha=0.05):
     """
     Create a function that bootstraps the difference in the means of two conditions.
     Function succeeds if 95 confidence interval does not cross 0.
@@ -168,7 +168,7 @@ def MeanDifference(BootSamples=10000, inputalpha=0.05):
     return F
 
 
-def BinomialWithControl(TestType="TT", alpha=0.05, Bias=0.5):
+def BinomialWithControlTest(TestType="TT", alpha=0.05, Bias=0.5):
     """
     Create a function that runs a binomial test on two conditions. Test succeeds only when first condition succeeds under a binomial and the second test fails.
 

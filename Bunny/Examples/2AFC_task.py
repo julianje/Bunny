@@ -15,9 +15,9 @@ from Bunny import *
 #################
 
 # Create a binomial agent with probability of success = 0.8
-Behavior = Participant(ParticipantLibrary.BinomialAgent(0.8))
+Behavior = Participant(Behaviors.BinomialAgent(0.8))
 # Create a DataTest that runs a binomial test
-Test = DataTest(TestLibrary.Binomial("OT"))
+Test = DataTest(Tests.BinomialTest("OT"))
 # Create an experiment object
 MyExperiment = Experiment(Behavior, Test, "2-AFC task")
 # Explore relation between sample size and power
@@ -34,10 +34,10 @@ Imagine(MyExperiment)
 ####################
 
 # Create a binomial agent with probability of success = 0.8
-Behavior = Participant(ParticipantLibrary.BinomialAgent(0.8))
+Behavior = Participant(Behaviors.BinomialAgent(0.8))
 # Create a DataTest that runs a binomial test. However, mark the test as
 # successfull if p<0.1, and set chance behavior to 0.25.
-Test = DataTest(TestLibrary.Binomial(TestType="TT", alpha=0.1, Bias=0.25))
+Test = DataTest(Tests.BinomialTest(TestType="TT", alpha=0.1, Bias=0.25))
 # Create an experiment object
 MyExperiment = Experiment(Behavior, Test, "2-AFC task")
 # Explore relation between sample size and power. Test sample sizes
@@ -63,7 +63,7 @@ Imagine(MyExperiment, samples=100000)
 ####################
 
 # Create a function that returns success with probabiliy = 0.8
-BehaviorModel = ParticipantLibrary.BinomialAgent(0.8)
+BehaviorModel = Behaviors.BinomialAgent(0.8)
 # Option 1: Create a participant object and send the behavior model as an
 # argument
 Behavior = Participant(BehaviorModel)
@@ -72,7 +72,7 @@ Behavior = Participant()
 Behavior.SetBehavior(BehaviorModel)
 
 # Load a function that runs a binomial test
-MyTest = TestLibrary.Binomial("OT")
+MyTest = Tests.BinomialTest("OT")
 # Option 1: Create a datatest object and send the DataTest as an argument
 Test = DataTest(MyTest)
 # Option 2: Create an empty DataTest object and add the binomial test later

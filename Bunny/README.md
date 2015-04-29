@@ -4,7 +4,7 @@
 
 ### Behavior library
 
-The participant library can be accesses in Bunny.ParticipantLibrary
+The library of behavior models is in Bunny.Behaviors
 
 ##### Random agent
 
