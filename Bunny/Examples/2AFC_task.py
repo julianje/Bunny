@@ -33,8 +33,8 @@ Imagine(MyExperiment)
 # ARGUMENT VERSION #
 ####################
 
-# Create a binomial agent with probability of success = 0.8
-Behavior = Participant(Behaviors.BinomialAgent(0.8))
+# Create a binomial agent named "Behavior model" with probability of success = 0.8
+Behavior = Participant(Behaviors.BinomialAgent(0.8), "Behavior model")
 # Create a DataTest that runs a binomial test. However, mark the test as
 # successfull if p<0.1, and set chance behavior to 0.25.
 Test = DataTest(Tests.BinomialTest(TestType="TT", alpha=0.1, Bias=0.25))
