@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-ParticipantLibrary contains a set of common models of behavior.
+Behaviors library contains a set of common models of behavior.
 """
 
 __license__ = "MIT"
@@ -20,7 +20,7 @@ def RandomAgent():
     Returns:
         Function
 
-    >> MyFunction = ParticipantLibrary.RandomAgent()
+    >> MyFunction = Behaviors.RandomAgent()
     """
     def F():
         return random.random()
@@ -37,7 +37,7 @@ def BinomialAgent(Bias=0.5):
     Returns:
         Function
 
-    >> MyFunction = ParticipantLibrary.BinomialAgent(0.5)
+    >> MyFunction = Behaviors.BinomialAgent(0.5)
     """
     def F(B=Bias):
         return 1 if random.random() < B else 0
@@ -54,7 +54,7 @@ def PoissonAgent(L=1):
     Returns:
         Function
 
-    >> MyFunction = ParticipantLibrary.PoissonAgent(4)
+    >> MyFunction = Behaviors.PoissonAgent(4)
     """
     def F(Lambda=L):
         # Last zero is because np returns an array.
@@ -75,11 +75,11 @@ def EmpiricalAgent(List):
     Returns:
         Function
 
-    >> MyFunction = ParticipantLibrary.EmpiricalAgent([1,3,3,4,5]) # Randomly sample from these numbers
+    >> MyFunction = Behaviors.EmpiricalAgent([1,3,3,4,5]) # Randomly sample from these numbers
 
-    >> MyFunction = ParticipantLibrary.EmpiricalAgent([0,1,1,1]) # Randomly sample from these numbers
+    >> MyFunction = Behaviors.EmpiricalAgent([0,1,1,1]) # Randomly sample from these numbers
 
-    >> MyFunction = ParticipantLibrary.EmpiricalAgent([[1,3],[0,1]]) # Equivalent to above
+    >> MyFunction = Behaviors.EmpiricalAgent([[1,3],[0,1]]) # Equivalent to above
     """
     Lists = [isinstance(i, list) for i in List]
     # If you got a list of lists
@@ -104,7 +104,7 @@ def GeometricAgent(param):
     Returns:
         Function
 
-    >> MyFunction = ParticipantLibrary.PoissonAgent(4)
+    >> MyFunction = Behaviors.GeometricAgent(4)
     """
     def F(p=param):
         return np.random.geometric(p)

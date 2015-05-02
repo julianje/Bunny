@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-TestLibrary contains a set of common statistical procedures.
+Tests library contains a set of common statistical procedures.
 """
 
 __license__ = "MIT"
@@ -24,7 +24,7 @@ def BinomialTest(TestType="TT", alpha=0.05, Bias=0.5):
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.Binomial("OT",0.05,0.5)
+    >> MyFunction = Tests.BinomialTest("OT",0.05,0.5)
     """
     if TestType == "TT":
         def F(Data):
@@ -64,7 +64,7 @@ def MajorityTest():
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.Majority()
+    >> MyFunction = Tests.MajorityTest()
     """
     def F(Data):
         TestName = "Testing if majority of data agrees with prediction"
@@ -85,7 +85,7 @@ def TTest(alpha=0.05):
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.TTest()
+    >> MyFunction = Tests.TTest()
     """
     def F(Data):
         TestName = "T-Test"
@@ -107,7 +107,7 @@ def FisherExactTest(alpha=0.05):
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.FisherExact()
+    >> MyFunction = Tests.FisherExactTest()
     """
     def F(Data):
         TestName = "Fisher exact test"
@@ -133,7 +133,7 @@ def MeanDifferenceTest(BootSamples=10000, inputalpha=0.05):
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.MeanDifference()
+    >> MyFunction = Tests.MeanDifferenceTest()
     """
     def F(Data, Samples=BootSamples, alpha=inputalpha):
         TestName = "Bootstrapped difference between means"
@@ -180,7 +180,7 @@ def BinomialWithControlTest(TestType="TT", alpha=0.05, Bias=0.5):
     Returns:
         Function
 
-    >> MyFunction = TestLibrary.BinomialWithControl()
+    >> MyFunction = Tests.BinomialWithControlTest()
     """
     print "Creating binomial with control. Make sure the test model is input before the control model in the experiment object."
     if TestType == "TT":

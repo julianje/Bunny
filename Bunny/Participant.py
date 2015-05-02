@@ -6,6 +6,7 @@ Participant objects wrap a behavior model with supporting functions.
 
 __license__ = "MIT"
 
+import inspect
 
 class Participant(object):
     """
@@ -82,11 +83,18 @@ class Participant(object):
         elif not hasattr(self.Behavior, '__call__'):
             print "ERROR: Cannot call behavior function."
         else:
+            res = inspect.getargspec(self.Behavior)
+            if len(res.args) > 0 and (res.defaults is None):
+                print "ERROR: Function requires arguments. Cannot use!"
+                return 0
+            if len(res.args) > 0 and (res.defaults is not None):
+                if len(res.args) != len(res.defaults):
+                    print "ERROR: Function requires arguments. Cannot use!"
+                    return 0
             try:
-                self.Sample(1)
+                self.Behavior()
             except:
                 print "Unexpected error in participant model!"
-                raise
                 return 0
         return 1
 
