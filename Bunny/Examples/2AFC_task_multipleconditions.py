@@ -12,7 +12,7 @@ from Bunny import *
 # You expect participant to have the same behavior in all conditions
 
 # Create a binomial agent with probability of success = 0.8
-Behavior = Participant(Behaviors.BinomialAgent(0.8))
+Behavior = Participant(Behaviors.BernoulliAgent(0.8))
 # Create a DataTest that runs a binomial test
 Test = DataTest(Tests.BinomialTest("OT"))
 # Create an experiment object with three conditions.
@@ -37,8 +37,8 @@ Imagine(MyExperiment)
 
 # You expect 90% of participants to succeed in the first condition, but
 # only 75% to succeed in the second condition.
-BehaviorModelA = Participant(Behaviors.BinomialAgent(0.9))
-BehaviorModelB = Participant(Behaviors.BinomialAgent(0.75))
+BehaviorModelA = Participant(Behaviors.BernoulliAgent(0.9))
+BehaviorModelB = Participant(Behaviors.BernoulliAgent(0.75))
 
 # Create a DataTest that runs a binomial test
 Test = DataTest(Tests.BinomialTest("OT"))
@@ -56,8 +56,8 @@ MyExperiment = Experiment([BehaviorModelA, BehaviorModelB], Test, "2-AFC task")
 # You expect 75% of participants to succeed in the first condition, but onlye 50% to succeed in the second condition.
 # However you are now expecting for the first test to be significant and
 # the second one to be non-significant.
-BehaviorTestModel = Participant(Behaviors.BinomialAgent(0.75))
-BehaviorControlModel = Participant(Behaviors.BinomialAgent(0.5))
+BehaviorTestModel = Participant(Behaviors.BernoulliAgent(0.75))
+BehaviorControlModel = Participant(Behaviors.BernoulliAgent(0.5))
 
 # The lest library comes with a test that does this:
 Test = DataTest(Tests.BinomialWithControlTest("OT"))

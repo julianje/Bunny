@@ -27,7 +27,7 @@ def RandomAgent():
     return F
 
 
-def BinomialAgent(Bias=0.5):
+def BernoulliAgent(Bias=0.5):
     """
     Create a function that returns 1 with a certain probability and 0 otherwise.
 
@@ -37,11 +37,11 @@ def BinomialAgent(Bias=0.5):
     Returns:
         Function
 
-    >> MyFunction = Behaviors.BinomialAgent(0.5)
+    >> MyFunction = Behaviors.BernoulliAgent(0.5)
     """
     def F(B=Bias):
         return 1 if random.random() < B else 0
-    return [F, "Binomial behavior", "Unit"]
+    return [F, "Bernoulli behavior", "Unit"]
 
 
 def PoissonAgent(L=1):

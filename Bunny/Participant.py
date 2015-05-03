@@ -8,6 +8,7 @@ __license__ = "MIT"
 
 import inspect
 
+
 class Participant(object):
     """
     Participant class.
@@ -50,13 +51,55 @@ class Participant(object):
             self.InputVariation = "Unknown"
 
     def Execute(self):
+        """
+        Collect a single data point.
+
+        .. Internal function::
+
+           This function is for internal use only.
+
+        Args:
+            None
+
+        Returns:
+            Call from Behavior function
+
+        >> MyParticipant.Execute()
+        """
         return self.Behavior()
 
     def Sample(self, Samples):
+        """
+        Collect n samples.
+
+        .. Internal function::
+
+           This function is for internal use only.
+
+        Args:
+            Samples (int) : Number of samples.
+
+        Returns:
+            Outcomes (list) : List of function calls
+
+        >> MyParticipant.Sample(5)
+        """
         Outcome = [self.Execute() for _ in range(Samples)]
         return Outcome
 
     def SetBehavior(self, Behavior, Name="Participant_Object"):
+        """
+        Set behavior model
+
+        Args:
+            Behavior (function) : Behavior function (Found in Behaviors library; see wiki).
+            Name (str) : Function's name.
+
+        Returns:
+            None
+
+        >> MyParticipant.SetBehavior(Behaviors.BernoulliAgent(0.5))
+        """
         if isinstance(Behavior, list):
             # If the behavior is a list, then extract it's name
             # and information about variation.
@@ -75,9 +118,33 @@ class Participant(object):
             self.Name = Name
 
     def AddName(self, Name):
+        """
+        Associate name with object
+
+        Args:
+            Name (str) : Function's name.
+
+        Returns:
+            None
+
+        >> MyParticipant.AddName("Bernoulli model")
+        """
         self.Name = Name
 
     def Validate(self):
+        """
+        Check that object has all information necessary to run simulations.
+
+        .. Internal function::
+
+           This function is for internal use only.
+
+        Args:
+            None
+
+        Returns:
+            bool
+        """
         if self.Behavior is None:
             print "ERROR: Participant object doesn't have a model of behavior.\nUse Participant.SetBehavior()"
         elif not hasattr(self.Behavior, '__call__'):
@@ -102,7 +169,7 @@ class Participant(object):
         """
         Print object attributes.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 

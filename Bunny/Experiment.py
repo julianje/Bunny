@@ -125,7 +125,7 @@ class Experiment(object):
         """
         Extract a DataTest's final decision to calculate it's power
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -141,7 +141,7 @@ class Experiment(object):
         """
         Simulate data collection and analysis N times
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -151,13 +151,16 @@ class Experiment(object):
         Returns:
             Results (list): List of N TestResult objects
         """
+        if self.SampleSize is None:
+            print "ERROR: Need a sample size! (Use Exp.SetSampleSize())"
+            return None
         return [self.RunExperiment() for _ in range(N)]
 
     def RunExperiment(self):
         """
         Simulate data collection and analysis once
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -179,7 +182,7 @@ class Experiment(object):
         """
         Run experiment's data test on the result from a simulation
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -195,7 +198,7 @@ class Experiment(object):
         """
         Simulate data collection once
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -280,7 +283,7 @@ class Experiment(object):
         """
         Check that experiment object has all information necessary to run simulations.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -311,7 +314,7 @@ class Experiment(object):
         """
         Check that Participant objects have all information necessary to run simulations.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -334,7 +337,7 @@ class Experiment(object):
         """
         Check that DataTest objects have all information necessary to run simulations.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -353,7 +356,7 @@ class Experiment(object):
         """
         Print object attributes.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 

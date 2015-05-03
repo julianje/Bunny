@@ -9,8 +9,8 @@
 
 from Bunny import *
 
-ConditionA = Participant(Behaviors.BinomialAgent(0.8))
-ConditionB = Participant(Behaviors.BinomialAgent(0.2))
+ConditionA = Participant(Behaviors.BernoulliAgent(0.8))
+ConditionB = Participant(Behaviors.BernoulliAgent(0.2))
 
 StatTest = DataTest(Tests.FisherExactTest())
 

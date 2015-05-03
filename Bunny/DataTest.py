@@ -34,7 +34,7 @@ class DataTest(object):
         Returns:
             None
 
-        >> MyAnalysis.SetTest(TestLibrary.Binomial())
+        >> MyAnalysis.SetTest(Tests.BinomialTest())
         """
         self.Test = Test
 
@@ -42,7 +42,7 @@ class DataTest(object):
         """
         Check that DataTest object is usable and execute the test on a dataset.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -55,7 +55,7 @@ class DataTest(object):
         """
         Check that DataTest object works.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
@@ -91,7 +91,7 @@ class DataTest(object):
         """
         Print object attributes.
 
-        .. warning::
+        .. Internal function::
 
            This function is for internal use only.
 
