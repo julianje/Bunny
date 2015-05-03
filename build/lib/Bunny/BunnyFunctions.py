@@ -8,6 +8,9 @@ __license__ = "MIT"
 
 from Experiment import *
 from Participant import *
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 import sys
@@ -190,11 +193,11 @@ def Imagine(Exp, samples=10000):
     if Exp.SampleSize is None:
         print "ERROR: Need a sample size! (Use SetSampleSize())"
         return None
+    Res = Exp.Replicate(samples)
+    if not (Res[0].HasKeyStats):
+        print "ERROR: DataTest has no key statistics to plot!"
+        None
     if len(Exp.Participants) == 1:
-        Res = Exp.Replicate(samples)
-        if not (Res[0].HasKeyStats):
-            print "ERROR: DataTest has no key statistics to plot!"
-            return None
         Stats = [Res[i].keystats[0] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
         SuccessTrials_indices = [i for i, x in enumerate(Decisions) if x == 1]
@@ -212,9 +215,42 @@ def Imagine(Exp, samples=10000):
                     str(Exp.SampleSize) + ' participants each. Power = ' + str(Power))
         pylab.show()
     else:
-        print "Bunny.Imagine(Exp) only works for experiments with one condition"
+        if len(Exp.Participants) > 2:
+            print "WARNING: Experiment has more than two conditions. Only plotting first two"
+        StatsDim0 = [Res[i].keystats[0] for i in range(samples)]
+        StatsDim1 = [Res[i].keystats[1] for i in range(samples)]
+        Decisions = [Res[i].aggregatedecision for i in range(samples)]
+        indicesS = [i for i, x in enumerate(Decisions) if x == 1]
+        indicesF = [i for i, x in enumerate(Decisions) if x == 0]
+        StatsDim0S = [StatsDim0[i] for i in indicesS]
+        StatsDim1S = [StatsDim1[i] for i in indicesS]
 
-# Mid-level functions
+        StatsDim0F = [StatsDim0[i] for i in indicesF]
+        StatsDim1F = [StatsDim1[i] for i in indicesF]
+
+        # Adjust number of bins
+        hist, xedges, yedges = np.histogram2d(
+            StatsDim0S, StatsDim1S, bins=[len(set(StatsDim0S)), len(set(StatsDim1S))])
+        xdiff = (xedges[1] - xedges[0]) * 1.0 / 2
+        ydiff = (yedges[1] - yedges[0]) * 1.0 / 2
+        XS, YS = np.meshgrid(xedges[:-1] + xdiff, yedges[:-1] + ydiff)
+        ZS = hist.transpose() * 100.0 / samples
+        hist, xedges, yedges = np.histogram2d(
+            StatsDim0F, StatsDim1F, bins=[len(set(StatsDim0F)), len(set(StatsDim1F))])
+        xdiff = (xedges[1] - xedges[0]) * 1.0 / 2
+        ydiff = (yedges[1] - yedges[0]) * 1.0 / 2
+        XF, YF = np.meshgrid(xedges[:-1] + xdiff, yedges[:-1] + ydiff)
+        ZF = hist.transpose() * 100.0 / samples
+        fig = plt.figure()
+        ax = fig.gca(projection='3d')
+        ax.scatter(XF, YF, ZF, c='y')
+        ax.scatter(XS, YS, ZS, c='b')
+        Power = sum(Decisions) * 1.0 / len(Decisions)
+        plt.xlabel('Condition 1')
+        plt.ylabel('Condition 2')
+        plt.title(str(samples) + ' simulations with ' +
+                  str(Exp.SampleSize) + ' participants each. Power = ' + str(Power))
+        plt.show()
 
 
 def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):

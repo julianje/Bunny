@@ -25,7 +25,7 @@ Current function in the test library:
 .. autosummary::
    Tests.BinomialTest
    Tests.MajorityTest
-   Tests.TTestTest
+   Tests.TTest
    Tests.FisherExactTest
    Tests.MeanDifferenceTest
    Tests.BinomialWithControlTest
