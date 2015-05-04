@@ -9,7 +9,7 @@ __license__ = "MIT"
 from Experiment import *
 from Participant import *
 from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
+# from matplotlib import cm
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
@@ -206,11 +206,12 @@ def Imagine(Exp, samples=10000):
         FailedTrials = [Stats[i] for i in FailedTrials_indices]
         Power = sum(Decisions) * 1.0 / len(Decisions)
         pylab.figure()
-        n, bins, patches = pylab.hist([SuccessTrials, FailedTrials], 10, histtype='bar', stacked=True, color=[
+        binno = len(set(Stats))
+        n, bins, patches = pylab.hist([SuccessTrials, FailedTrials], binno, histtype='bar', stacked=True, color=[
                                       'green', 'red'], label=['Success', 'Fail'])
         pylab.legend()
-        pylab.xlabel('Statistic value')
-        pylab.ylabel('Number of observations')
+        pylab.xlabel('Statistic')
+        pylab.ylabel('Number of simulations')
         pylab.title(str(samples) + ' simulations with ' +
                     str(Exp.SampleSize) + ' participants. Power = ' + str(Power))
         pylab.show()
