@@ -10,20 +10,20 @@ Bunny's main objects are Experiments, a combination of a formal theory of how yo
 
 Calculate its power, given the sample size
 
-	Bunny.Inspect(Experiment)
+	Inspect(Experiment)
 
 Help you visualize the experiment's power
 
-	Bunny.Imagine(Experiment)
+	Imagine(Experiment)
 
 Find the sample size you need given a power
 
 	Experiment.SetPower(0.95)
-	Bunny.Hop(Experiment)
+	Hop(Experiment)
 
 Or explore the relationship between sample size and power
 
-	Bunny.Explore(Experiment)
+	Explore(Experiment)
 
 # Get started
 

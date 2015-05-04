@@ -10,17 +10,17 @@ The library of behavior models is in Bunny.Behaviors
 
 You can generate an agent that gives random numbers between 0 and 1 by calling
 
-    Bunny.ParticipantLibrary.RandomAgent()
+    Behaviors.RandomAgent()
 
-##### Binomial agent
+##### Bernoulli agent
 
-Generate a binomial agent that returns correct or incorrect through
+Generate a bernoulli agent that returns correct or incorrect through
 
-    Bunny.ParticipantLibrary.Binomial()
+    Behaviors.BernoulliAgent()
 
 The function defaults to a bias of 0.5 (random guessing). Add a new bias through arguments
 
-    Bunny.ParticipantLibrary.Binomial(0.8)
+    Behaviors.BernoulliAgent(0.8)
 
 creates an agent that gets things right 80% of the time.
 
@@ -28,7 +28,7 @@ creates an agent that gets things right 80% of the time.
 
 Input is lambda
 
-    F=Bunny.ParticipantLibrary.Poisson(L=5)
+    F=Behaviors.Poisson(L=5)
 
 you can manually override it later
 
@@ -38,23 +38,23 @@ you can manually override it later
 
 Create a geometric distribution with mean 1/p
 
-    Bunny.ParticipantLibrary.Geometric(p)
+    Behaviors.Geometric(p)
 
 ##### Empirical agent
 
 You can also create an agent that samples from an empirical distribution. If your observations are 1, 1, 3, 4, and 7. You can use this distribution to build a participant model
 
-    Bunny.ParticipantLibrary.Empirical([1,1,3,4,7])
+    Behaviors.Empirical([1,1,3,4,7])
 
 This distribution will return 1 with probability 2/5, and 3, 4 and 7 each with probability 1/5.
 
 If the empirical distribution is too long. You can also send the counts. For example, if you saw children choose option 0 ten times and option 1 thirty times you can create the function through
 
-    Bunny.ParticipantLibrary.Empirical([[0,10],[1,30]])
+    Behaviors.Empirical([[0,10],[1,30]])
 
 ### TestLibrary
 
-The test library can be accessed through Bunny.TestLibrary
+The test library can be accessed through Bunny.Tests
 
 ##### Binomial test
 
@@ -62,17 +62,17 @@ The binomial test takes three parameters, whether it's one-tailed (OT) or two-ta
 
 By default
 
-	Bunny.TestLibrary.Binomial()
+	Tests.Binomial()
 
 returns a two-tailed binomial function with significance at 0.05, testing against a bias of 0.5. You can change these parameters through
 
-	Bunny.TestLibrary.Binomial(TestType,alpha,bias)
+	Tests.Binomial(TestType,alpha,bias)
 
 where TestType is one of the strings "OT" or "TT"
 
 For example
 
-	F=Bunny.TestLibrary.Binomial("OT",0.1,0.25)
+	F=Tests.Binomial("OT",0.1,0.25)
 
 creates a function F that runs a one-tailed binomial test which is significant if p<0.1, and is testing against a bias of 0.25
 
@@ -88,17 +88,17 @@ The function will run a binomial test on each row of the Data array. The first i
 
 This function is a qualitative version of the binomial test, that only checks if the majority of participants are responding in accordance with your hypothesis. It's constructor doesn't take any arguments
 
-	Bunny.TestLibrary.Majority()
+	Tests.Majority()
 
 ##### T-test
 
 T-tests are built through
 
-    Bunny.TestLibrary.TTest()
+    Tests.TTest()
 
 and default to a significance level of 0.05. You send a new significant level as an argument:
 
-    Bunny.TestLibrary.TTest(0.1)
+    Tests.TTest(0.1)
 
 The resulting function only works for Datasets with two rows. If the input has more than two rows the test will print an error message and fail.
 
@@ -106,7 +106,7 @@ The resulting function only works for Datasets with two rows. If the input has m
 
 Fisher exact tests are built through
 
-    Bunny.TestLibrary.FisherExact()
+    Tests.FisherExact()
 
 Like the T-test function. Fisher exact only works for datasets with two conditions.
 
@@ -114,7 +114,7 @@ Like the T-test function. Fisher exact only works for datasets with two conditio
 
 Mean difference checks that the mean in each condition is different from the mean of all other conditions. This is done by bootstrapping the mean differnce between each pair of conditions. You can input the number of bootstrap samples as an argument (Defaulted to 10,000)
 
-    F=Bunny.TestLibrary.MeanDifference(BootSamples=5000,inputalpha=0.05)
+    F=Tests.MeanDifference(BootSamples=5000,inputalpha=0.05)
 
 You can modify the number of bootstrap samples and the significance level through arguments:
 
@@ -124,7 +124,7 @@ You can modify the number of bootstrap samples and the significance level throug
 
 Succeeds when first test is significant under a binomial test but second condition is not.
 
-    Bunny.TestLibrary.BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5)
+    Tests.BinomialWithControl(TestType="TT",alpha=0.05,Bias=0.5)
 
 Where TestType can be two-tailed ("TT") or one-tailed ("OT")
 
