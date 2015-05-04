@@ -2,7 +2,7 @@
 
 # About
 
-Bunny is a monte carlo power analyses (MCPA) package for python. Bunny takes a theory of how you think humans will behave (called a Participant) and the analysis you plan to use on the data (called a DataTest) and helps you understand your experiment by simulating the process of collecting and analyzing your data thousands of times. Bunny can help you determine your experiment's power, the sample size you need, or simply to understand how different tests affect your study.
+Bunny is a monte carlo power analysis (MCPA) package for python. Bunny takes a theory of how you think humans will behave (called a Participant) and the analysis you plan to apply to your data (called a DataTest) and helps you understand your experiment by simulating the process of collecting and analyzing your data thousands of times. Bunny can help you determine your experiment's power, the sample size you need, or simply to understand how different tests affect your study.
 
 Bunny is simple. Here is a complete working example showing how to calculate the power for a two-alternative forced choice task:
 
