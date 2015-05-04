@@ -191,11 +191,13 @@ def BinomialWithControlTest(TestType="TT", alpha=0.05, Bias=0.5):
             if Conditions != 2:
                 print "Error: BinomialWithControl needs exactly two conditions"
                 return None
+            KeyStats = [Data[i].sum() * 1.0 / Data.shape[1]
+                        for i in range(Conditions)]
             pvals = [scipy.stats.binom_test(
                 Data[i].sum(), Data.shape[1], Bias) for i in range(Conditions)]
             results = [i < alpha for i in pvals]
             final = 1 if (results[0] == 1 and results[1] == 0) else 0
-            return TestResult(final, TestName, results, None, pvals)
+            return TestResult(final, TestName, results, KeyStats, pvals)
     elif TestType == "OT":
         TestName = "First condition with one-tailed binomial test, and second condition as control."
 
@@ -204,11 +206,13 @@ def BinomialWithControlTest(TestType="TT", alpha=0.05, Bias=0.5):
             if Conditions != 2:
                 print "Error: BinomialWithControl needs exactly two conditions"
                 return None
+            KeyStats = [Data[i].sum() * 1.0 / Data.shape[1]
+                        for i in range(Conditions)]
             pvals = [scipy.stats.binom.sf(
                 Data[i].sum() - 1, Data.shape[1], Bias) for i in range(Conditions)]
             results = [i < alpha for i in pvals]
             final = 1 if (results[0] == 1 and results[1] == 0) else 0
-            return TestResult(final, TestName, results, None, pvals)
+            return TestResult(final, TestName, results, KeyStats, pvals)
     else:
         print "Error: Binomial test must be one-tailed (OT) or two-tailed (TT)."
         return None

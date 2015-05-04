@@ -71,7 +71,7 @@ class TestResult(object):
         Returns:
             Bool
         """
-        return 0 if self.keystats is None else 0
+        return 0 if self.keystats is None else 1
 
     def Display(self, Full=True):
         """

@@ -194,9 +194,9 @@ def Imagine(Exp, samples=10000):
         print "ERROR: Need a sample size! (Use SetSampleSize())"
         return None
     Res = Exp.Replicate(samples)
-    if not (Res[0].HasKeyStats):
+    if not (Res[0].HasKeyStats()):
         print "ERROR: DataTest has no key statistics to plot!"
-        None
+        return None
     if len(Exp.Participants) == 1:
         Stats = [Res[i].keystats[0] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
@@ -212,7 +212,7 @@ def Imagine(Exp, samples=10000):
         pylab.xlabel('Statistic value')
         pylab.ylabel('Number of observations')
         pylab.title(str(samples) + ' simulations with ' +
-                    str(Exp.SampleSize) + ' participants each. Power = ' + str(Power))
+                    str(Exp.SampleSize) + ' participants. Power = ' + str(Power))
         pylab.show()
     else:
         if len(Exp.Participants) > 2:
@@ -224,10 +224,8 @@ def Imagine(Exp, samples=10000):
         indicesF = [i for i, x in enumerate(Decisions) if x == 0]
         StatsDim0S = [StatsDim0[i] for i in indicesS]
         StatsDim1S = [StatsDim1[i] for i in indicesS]
-
         StatsDim0F = [StatsDim0[i] for i in indicesF]
         StatsDim1F = [StatsDim1[i] for i in indicesF]
-
         # Adjust number of bins
         hist, xedges, yedges = np.histogram2d(
             StatsDim0S, StatsDim1S, bins=[len(set(StatsDim0S)), len(set(StatsDim1S))])
@@ -245,11 +243,16 @@ def Imagine(Exp, samples=10000):
         ax = fig.gca(projection='3d')
         ax.scatter(XF, YF, ZF, c='y')
         ax.scatter(XS, YS, ZS, c='b')
+        ax.set_xlabel('Condition 1')
+        ax.set_ylabel('Condition 2')
+        ax.set_zlabel('Percentage of simulations')
+        minval = min(min([100 if i == 0 else i for i in ZF.flatten()]), min(
+            [100 if i == 0 else i for i in ZS.flatten()]))
+        maxval = max(max(ZF.flatten()), max(ZS.flatten())) + 1
+        ax.set_zlim(minval, maxval)
         Power = sum(Decisions) * 1.0 / len(Decisions)
-        plt.xlabel('Condition 1')
-        plt.ylabel('Condition 2')
         plt.title(str(samples) + ' simulations with ' +
-                  str(Exp.SampleSize) + ' participants each. Power = ' + str(Power))
+                  str(Exp.SampleSize) + ' participants. Power = ' + str(Power))
         plt.show()
 
 
