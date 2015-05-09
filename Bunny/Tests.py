@@ -121,13 +121,50 @@ def FisherExactTest(alpha=0.05):
     return F
 
 
-def MeanDifferenceTest(BootSamples=10000, inputalpha=0.05):
+def BootstrapMeanTest(BootSamples=10000, criticalvalue=0.5, inputalpha=0.05):
     """
-    Create a function that bootstraps the difference in the means of two conditions.
-    Function succeeds if 95 confidence interval does not cross 0.
+    Create a function that bootstraps the average value of each condition
+    Function succeeds if 95 confidence interval does not value provided.
 
     Args:
         BootSamples (int): Number of samples for bootstrap
+        criticalvalue (float): value that bootstrapped CI should avoid.
+        intputalpha (float): percentage outside confidence interval
+
+    Returns:
+        Function
+
+    >> MyFunction = Tests.BootstrapMeanTest()
+    """
+    def F(Data, Samples=BootSamples, criticalvalue=criticalvalue, inputalpha=intputalpha):
+        TestName = "Bootstrap mean value"
+        Conditions = Data.shape[0]
+        Size = Data.shape[1]
+        outcome = []
+        for Condition in range(Conditions):
+            C = Data[Condition]
+            indices = np.random.randint(0, Size, (Samples, Size))
+            statistics = np.mean(C[indices], 1)
+            statistics = np.sort(statistics)
+            lowerbound = statistics[int((alpha / 2.0) * Samples)]
+            upperbound = statistics[int((1 - alpha / 2.0) * Samples)]
+            if (lowerbound < criticalvalue and upperbound < criticalvalue) or (lowerbound > criticalvalue and upperbound > criticalvalue):
+                outcome.append(1)
+            else:
+                outcome.append(0)
+        final = 1 if sum(outcome) == len(outcome) else 0
+        return TestResults(final, TestName, outcome)
+    return F
+
+
+def MeanDifferenceTest(BootSamples=10000, criticalvalue=0, inputalpha=0.05):
+    """
+    Create a function that bootstraps the difference in the means of two conditions.
+    Function succeeds if 95 confidence interval does not cross the critical value.
+
+    Args:
+        BootSamples (int): Number of samples for bootstrap
+        criticalvalue (float): Value that confidence interval should not contain
         inputalpha (float): Threshold at which test succeeds
 
     Returns:
@@ -135,13 +172,12 @@ def MeanDifferenceTest(BootSamples=10000, inputalpha=0.05):
 
     >> MyFunction = Tests.MeanDifferenceTest()
     """
-    def F(Data, Samples=BootSamples, alpha=inputalpha):
+    def F(Data, Samples=BootSamples, criticalvalue=criticalvalue, alpha=inputalpha):
         TestName = "Bootstrapped difference between means"
         Conditions = Data.shape[0]
         if Conditions < 2:
             print "Error: MeanDifference test needs at least two conditions"
             return None
-        #Comparisons = scipy.misc.comb(Conditions,2)
         Size = Data.shape[1]
         outcome = []
         for Condition1 in range(Conditions - 1):
@@ -158,7 +194,7 @@ def MeanDifferenceTest(BootSamples=10000, inputalpha=0.05):
                 # Get (1-alpha)% confidence interval
                 lowerbound = statistics[int((alpha / 2.0) * Samples)]
                 upperbound = statistics[int((1 - alpha / 2.0) * Samples)]
-                if (lowerbound < 0 and upperbound < 0) or (lowerbound > 0 and upperbound > 0):
+                if (lowerbound < criticalvalue and upperbound < criticalvalue) or (lowerbound > criticalvalue and upperbound > criticalvalue):
                     outcome.append(1)
                 else:
                     outcome.append(0)

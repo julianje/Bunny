@@ -189,15 +189,23 @@ def Imagine(Exp, samples=10000):
     >> Imagine(MyExperiment,samples=10000)
 
     """
+    usepvals = False
     if Exp.SampleSize is None:
         print "ERROR: Need a sample size! (Use SetSampleSize())"
         return None
     Res = Exp.Replicate(samples)
     if not (Res[0].HasKeyStats()):
-        print "ERROR: DataTest has no key statistics to plot!"
-        return None
+        print "WARNING: DataTest has no key statistics to plot. Trying to use p-values instead..."
+        if (Res[0].HasPvals()):
+            usepvals = True
+        else:
+            print "ERROR: No p-values. Cannot plot."
+            return None
     if len(Exp.Participants) == 1:
-        Stats = [Res[i].keystats[0] for i in range(samples)]
+        if usepvals:
+            Stats = [Res[i].pvals[0] for i in range(samples)]
+        else:
+            Stats = [Res[i].keystats[0] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
         SuccessTrials_indices = [i for i, x in enumerate(Decisions) if x == 1]
         FailedTrials_indices = [i for i, x in enumerate(Decisions) if x == 0]
@@ -209,7 +217,10 @@ def Imagine(Exp, samples=10000):
         n, bins, patches = pylab.hist([SuccessTrials, FailedTrials], binno, histtype='bar', stacked=True, color=[
                                       'green', 'red'], label=['Success', 'Fail'])
         pylab.legend()
-        pylab.xlabel('Statistic')
+        if usepvals:
+            pylab.xlabel('P-value')
+        else:
+            pylab.xlabel('Statistic')
         pylab.ylabel('Number of simulations')
         pylab.title(str(samples) + ' simulations with ' +
                     str(Exp.SampleSize) + ' participants. Power = ' + str(Power))
@@ -217,8 +228,12 @@ def Imagine(Exp, samples=10000):
     else:
         if len(Exp.Participants) > 2:
             print "WARNING: Experiment has more than two conditions. Only plotting first two"
-        StatsDim0 = [Res[i].keystats[0] for i in range(samples)]
-        StatsDim1 = [Res[i].keystats[1] for i in range(samples)]
+        if usepvals:
+            StatsDim0 = [Res[i].pvals[0] for i in range(samples)]
+            StatsDim1 = [Res[i].pvals[1] for i in range(samples)]
+        else:
+            StatsDim0 = [Res[i].keystats[0] for i in range(samples)]
+            StatsDim1 = [Res[i].keystats[1] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
         Domain0 = list(np.sort(list(set(StatsDim0))))
         Domain1 = list(np.sort(list(set(StatsDim1))))

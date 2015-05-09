@@ -635,6 +635,22 @@ Bias (float): Weight of null hypothesis.</dd>
 </dd></dl>
 
 <dl class="function">
+<dt id="Tests.BootstrapMeanTest">
+<code class="descclassname">Tests.</code><code class="descname">BootstrapMeanTest</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>criticalvalue=0.5</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.BootstrapMeanTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that bootstraps the average value of each condition
+Function succeeds if 95 confidence interval does not value provided.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>BootSamples (int): Number of samples for bootstrap
+criticalvalue (float): value that bootstrapped CI should avoid.
+intputalpha (float): percentage outside confidence interval</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = Tests.BootstrapMeanTest()</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="Tests.FisherExactTest">
 <code class="descclassname">Tests.</code><code class="descname">FisherExactTest</code><span class="sig-paren">(</span><em>alpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.FisherExactTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a Fisher exact test. Function automatically checks if it can analyze input data.</p>
@@ -662,12 +678,13 @@ Bias (float): Weight of null hypothesis.</dd>
 
 <dl class="function">
 <dt id="Tests.MeanDifferenceTest">
-<code class="descclassname">Tests.</code><code class="descname">MeanDifferenceTest</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.MeanDifferenceTest" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Tests.</code><code class="descname">MeanDifferenceTest</code><span class="sig-paren">(</span><em>BootSamples=10000</em>, <em>criticalvalue=0</em>, <em>inputalpha=0.05</em><span class="sig-paren">)</span><a class="headerlink" href="#Tests.MeanDifferenceTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a function that bootstraps the difference in the means of two conditions.
-Function succeeds if 95 confidence interval does not cross 0.</p>
+Function succeeds if 95 confidence interval does not cross the critical value.</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>BootSamples (int): Number of samples for bootstrap
+criticalvalue (float): Value that confidence interval should not contain
 inputalpha (float): Threshold at which test succeeds</dd>
 <dt>Returns:</dt>
 <dd>Function</dd>
