@@ -109,3 +109,21 @@ def GeometricAgent(param):
     def F(p=param):
         return np.random.geometric(p)
     return [F, "Geometric distribution", "Real"]
+
+
+def NormalAgent(mean, sd=1):
+    """
+    Create a function that returns a sample from a normal distribution.
+
+    Args:
+        mean (float): Distribution's mean
+        sd (float): Distribution's standard deviation
+
+    Returns:
+        Function
+
+    >> MyFunction = Behaviors.NormalAgent(5,1)
+    """
+    def F(mean=mean, sd=sd):
+        return np.random.normal(mean, sd)
+    return [F, "Normal distribution", "Real"]
