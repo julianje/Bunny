@@ -221,39 +221,34 @@ def Imagine(Exp, samples=10000):
         StatsDim0 = [Res[i].keystats[0] for i in range(samples)]
         StatsDim1 = [Res[i].keystats[1] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
-        indicesS = [i for i, x in enumerate(Decisions) if x == 1]
-        indicesF = [i for i, x in enumerate(Decisions) if x == 0]
-        StatsDim0S = [StatsDim0[i] for i in indicesS]
-        StatsDim1S = [StatsDim1[i] for i in indicesS]
-        StatsDim0F = [StatsDim0[i] for i in indicesF]
-        StatsDim1F = [StatsDim1[i] for i in indicesF]
-        # Adjust number of bins
-        hist, xedges, yedges = np.histogram2d(
-            StatsDim0S, StatsDim1S, bins=[len(set(StatsDim0S)), len(set(StatsDim1S))])
-        xdiff = (xedges[1] - xedges[0]) * 1.0 / 2
-        ydiff = (yedges[1] - yedges[0]) * 1.0 / 2
-        XS, YS = np.meshgrid(xedges[:-1] + xdiff, yedges[:-1] + ydiff)
-        ZS = hist.transpose() * 100.0 / samples
-        hist, xedges, yedges = np.histogram2d(
-            StatsDim0F, StatsDim1F, bins=[len(set(StatsDim0F)), len(set(StatsDim1F))])
-        xdiff = (xedges[1] - xedges[0]) * 1.0 / 2
-        ydiff = (yedges[1] - yedges[0]) * 1.0 / 2
-        XF, YF = np.meshgrid(xedges[:-1] + xdiff, yedges[:-1] + ydiff)
-        ZF = hist.transpose() * 100.0 / samples
+        Domain0 = list(np.sort(list(set(StatsDim0))))
+        Domain1 = list(np.sort(list(set(StatsDim1))))
+        X, Y = np.meshgrid(Domain0, Domain1)
+        X = X.flatten()
+        Y = Y.flatten()
+        hist, xedges, yedges = np.histogram2d(StatsDim0, StatsDim1, bins=[len(Domain0), len(Domain1)])
+        Z = np.transpose(hist).flatten()
+        C = [0] * len(X)
+        # Now create the decision drawing.
+        for index in range(len(X)):
+            indicesX = [i for i, x in enumerate(StatsDim0) if x == X[index]]
+            indicesY = [i for i, x in enumerate(StatsDim1) if x == Y[index]]
+            DecisionIndex = [i for i in indicesX if i in indicesY]
+            if DecisionIndex == []:
+                C[index] = 0
+            else:
+                C[index] = Decisions[DecisionIndex[0]]
+        # Normalize Z dimension
+        Z = Z*100.0/sum(Z)
+        # Convert color vector a color scheme
+        C = ['r' if i == 0 else 'g' for i in C]
         fig = plt.figure()
         ax = fig.gca(projection='3d')
-        ax.scatter(XF, YF, ZF, c='y')
-        ax.scatter(XS, YS, ZS, c='b')
-        ax.set_xlabel('Condition 1')
-        ax.set_ylabel('Condition 2')
+        for i in range(len(X)):
+            ax.scatter(X[i], Y[i], Z[i], c=C[i])
+        ax.set_xlabel('Condition 1: ' + Exp.Participants[0].Name)
+        ax.set_ylabel('Condition 2: ' + Exp.Participants[1].Name)
         ax.set_zlabel('Percentage of simulations')
-        minval = min(min([100 if i == 0 else i for i in ZF.flatten()]), min(
-            [100 if i == 0 else i for i in ZS.flatten()]))
-        maxval = max(max(ZF.flatten()), max(ZS.flatten())) + 1
-        ax.set_zlim(minval, maxval)
-        Power = sum(Decisions) * 1.0 / len(Decisions)
-        plt.title(str(samples) + ' simulations with ' +
-                  str(Exp.SampleSize) + ' participants. Power = ' + str(Power))
         plt.show()
 
 
