@@ -9,7 +9,6 @@ __license__ = "MIT"
 from Experiment import *
 from Participant import *
 from mpl_toolkits.mplot3d import Axes3D
-# from matplotlib import cm
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
@@ -226,7 +225,8 @@ def Imagine(Exp, samples=10000):
         X, Y = np.meshgrid(Domain0, Domain1)
         X = X.flatten()
         Y = Y.flatten()
-        hist, xedges, yedges = np.histogram2d(StatsDim0, StatsDim1, bins=[len(Domain0), len(Domain1)])
+        hist, xedges, yedges = np.histogram2d(
+            StatsDim0, StatsDim1, bins=[len(Domain0), len(Domain1)])
         Z = np.transpose(hist).flatten()
         C = [0] * len(X)
         # Now create the decision drawing.
@@ -239,7 +239,7 @@ def Imagine(Exp, samples=10000):
             else:
                 C[index] = Decisions[DecisionIndex[0]]
         # Normalize Z dimension
-        Z = Z*100.0/sum(Z)
+        Z = Z * 100.0 / sum(Z)
         # Convert color vector a color scheme
         C = ['r' if i == 0 else 'g' for i in C]
         fig = plt.figure()
