@@ -235,6 +235,7 @@ def Imagine(Exp, samples=10000):
             StatsDim0 = [Res[i].keystats[0] for i in range(samples)]
             StatsDim1 = [Res[i].keystats[1] for i in range(samples)]
         Decisions = [Res[i].aggregatedecision for i in range(samples)]
+        Power = sum(Decisions) * 1.0 / len(Decisions)
         Domain0 = list(np.sort(list(set(StatsDim0))))
         Domain1 = list(np.sort(list(set(StatsDim1))))
         X, Y = np.meshgrid(Domain0, Domain1)
@@ -264,6 +265,8 @@ def Imagine(Exp, samples=10000):
         ax.set_xlabel('Condition 1: ' + Exp.Participants[0].Name)
         ax.set_ylabel('Condition 2: ' + Exp.Participants[1].Name)
         ax.set_zlabel('Percentage of simulations')
+        ax.set_title(str(samples) + ' simulations with ' +
+                     str(Exp.SampleSize) + ' participnats. Power = ' + str(Power))
         plt.show()
 
 
