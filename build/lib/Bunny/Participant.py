@@ -10,29 +10,17 @@ import inspect
 
 
 class Participant(object):
-    """
-    Participant class.
-    Contains a model of a participant.
-
-    Execute()  generates one sample
-    Sample(n) generates n samples
-    SetBehavior(f) sets function f as the behavior model
-    Validate() ensures the object has a function stored
-    AddName(N) set object name to N
-    Display(B) prints properties, B is boolean value indicating verbosity
-    """
 
     def __init__(self, Behavior=None, Name="Participant_Object"):
         """
         Participant class.
+
         Contains a model of a participant.
 
-        Execute()  generates one sample
-        Sample(n) generates n samples
-        SetBehavior(f) sets function f as the behavior model
-        Validate() ensures the object has a function stored
-        AddName(N) set object name to N
-        Display(B) prints properties, B is boolean value indicating verbosity
+        Args:
+            Behavior (function): Function that returns a single number and can be called
+                                 without suppling additional parameters
+            Name (str): Object's name.
         """
         if isinstance(Behavior, list):
             # If the behavior is a list, then extract it's name
@@ -42,13 +30,10 @@ class Participant(object):
                 self.Name = Behavior[1]
             else:
                 self.Name = Name
-            self.InputVariation = Behavior[2]
         else:
             # Otherwise the input is likely just a function
             self.Behavior = Behavior
             self.Name = Name
-            # No information about whether function takes arguments
-            self.InputVariation = "Unknown"
 
     def Execute(self):
         """
@@ -108,12 +93,9 @@ class Participant(object):
                 self.Name = Behavior[1]
             else:
                 self.Name = Name
-            self.InputVariation = Behavior[2]
         else:
             # Otherwise the input is likely just a function
             self.Behavior = Behavior
-            # No information about whether function takes arguments
-            self.InputVariation = "Unknown"
             # Replace name.
             self.Name = Name
 

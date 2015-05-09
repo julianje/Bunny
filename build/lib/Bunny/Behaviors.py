@@ -59,7 +59,7 @@ def PoissonAgent(L=1):
     def F(Lambda=L):
         # Last zero is because np returns an array.
         return np.random.poisson(Lambda, 1)[0]
-    return [F, "Poisson behavior", "Real"]
+    return [F, "Poisson behavior"]
 
 
 def EmpiricalAgent(List):
@@ -91,7 +91,7 @@ def EmpiricalAgent(List):
 
     def F():
         return random.choice((List))
-    return [F, "Empirically set behavior", "None"]
+    return [F, "Empirically set behavior"]
 
 
 def GeometricAgent(param):
@@ -108,7 +108,7 @@ def GeometricAgent(param):
     """
     def F(p=param):
         return np.random.geometric(p)
-    return [F, "Geometric distribution", "Real"]
+    return [F, "Geometric distribution"]
 
 
 def NormalAgent(mean, sd=1):
@@ -126,4 +126,4 @@ def NormalAgent(mean, sd=1):
     """
     def F(mean=mean, sd=sd):
         return np.random.normal(mean, sd)
-    return [F, "Normal distribution", "Real"]
+    return [F, "Normal distribution"]

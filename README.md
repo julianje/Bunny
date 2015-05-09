@@ -47,9 +47,3 @@ To install download the source code and on a terminal run
 # License
 
 Bunny is available through an MIT license.
-
-# TODO
-
-* Support finding parameters in behavior models given a desired power and sample size
-
-* Allow model objects to be saved.
