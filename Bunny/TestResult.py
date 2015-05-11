@@ -15,7 +15,7 @@ class TestResult(object):
         """
         Create a TestResult object object.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -45,7 +45,7 @@ class TestResult(object):
         """
         Check if TestResult object has p-values associated with it
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -61,7 +61,7 @@ class TestResult(object):
         """
         Check if TestResult object has key statistics associated with it
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -77,7 +77,7 @@ class TestResult(object):
         """
         Print object attributes.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 

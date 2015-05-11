@@ -276,7 +276,7 @@ def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):
 
     This is the main function that Explore() uses to generate the data.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -343,7 +343,7 @@ def PlotPowerSamples(Samples, Filename=None):
 
     This is the function Explore() uses to produce its plots.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 

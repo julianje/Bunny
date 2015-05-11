@@ -42,7 +42,7 @@ class DataTest(object):
         """
         Check that DataTest object is usable and execute the test on a dataset.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -55,7 +55,7 @@ class DataTest(object):
         """
         Check that DataTest object works.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -91,7 +91,7 @@ class DataTest(object):
         """
         Print object attributes.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 

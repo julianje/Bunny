@@ -39,7 +39,7 @@ class Participant(object):
         """
         Collect a single data point.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -57,7 +57,7 @@ class Participant(object):
         """
         Collect n samples.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -117,7 +117,7 @@ class Participant(object):
         """
         Check that object has all information necessary to run simulations.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
@@ -151,7 +151,7 @@ class Participant(object):
         """
         Print object attributes.
 
-        .. Internal function::
+        .. warning::
 
            This function is for internal use only.
 
