@@ -10,6 +10,7 @@ Current functions in the behavior library:
 
 .. autosummary::
    Behaviors.RandomAgent
+   Behaviors.BernoulliAgent
    Behaviors.BinomialAgent
    Behaviors.PoissonAgent
    Behaviors.EmpiricalAgent

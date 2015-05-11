@@ -723,6 +723,21 @@ inputalpha (float): Threshold at which test succeeds</dd>
 </dd></dl>
 
 <dl class="function">
+<dt id="Behaviors.BinomialAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">BinomialAgent</code><span class="sig-paren">(</span><em>N</em>, <em>Bias</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.BinomialAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns the sum of n independent bernoulli samples</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>N (int): number of samples
+Bias (float or list of floats): Probability of success. Or a list of length N indicating each probability of success</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = Behaviors.BinomialAgent(2,0.8) # Two questions, each with 0.8 probability of success
+&gt;&gt; MyFunction = Behaviors.BinomialAgent(2,[0.6,0.8]) # Questions have 0.6 and 0.8 probabilities of success, respectively.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="Behaviors.EmpiricalAgent">
 <code class="descclassname">Behaviors.</code><code class="descname">EmpiricalAgent</code><span class="sig-paren">(</span><em>List</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.EmpiricalAgent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a function defined from an empirical sample.</p>

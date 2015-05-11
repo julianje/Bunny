@@ -41,7 +41,37 @@ def BernoulliAgent(Bias=0.5):
     """
     def F(B=Bias):
         return 1 if random.random() < B else 0
-    return [F, "Bernoulli behavior", "Unit"]
+    return [F, "Bernoulli behavior"]
+
+
+def BinomialAgent(N, Bias):
+    """
+    Create a function that returns the sum of n independent bernoulli samples
+
+    Args:
+        N (int): number of samples
+        Bias (float or list of floats): Probability of success. Or a list of length N indicating each probability of success
+
+    Returns:
+        Function
+
+    >> MyFunction = Behaviors.BinomialAgent(2,0.8) # Two questions, each with 0.8 probability of success
+    >> MyFunction = Behaviors.BinomialAgent(2,[0.6,0.8]) # Questions have 0.6 and 0.8 probabilities of success, respectively.
+    """
+    if isinstance(Bias, list):
+        if len(Bias) != N:
+            print "ERROR: List of biases does not match number of questions."
+            return None
+
+        def F():
+            Responses = [1 if random.random < Bias[i] else 0 for i in range(N)]
+            return sum(Responses)
+
+    else:
+        def F(B=Bias):
+            Responses = [1 if random.random < B else 0 for i in range(N)]
+            return sum(Responses)
+    return [F, "Binomial behavior"]
 
 
 def PoissonAgent(L=1):
