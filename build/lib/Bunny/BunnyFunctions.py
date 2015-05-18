@@ -47,7 +47,10 @@ def Explore(Exp, lower=15, limit=35, filename=None):
 
 def Hop(Exp, limit=100, power=None, samples=10000, Verbose=True):
     """
-    Determine an experiment's sample size through binary search.
+    Determine an experiment's sample size through binary + local search.
+    An experiment's power is often only approximately monotonic as a function of the sample size (especially with NHST).
+    This function does binary search to find an approximate sample size, and then exhaustively checks
+    the nearby region ().
 
     Args:
         Exp (Experiment): Experiment object to use (see Experiment class)
@@ -89,8 +92,9 @@ def Hop(Exp, limit=100, power=None, samples=10000, Verbose=True):
         print "Searching for your sample size..."
     underpowered = True
     while True:
-        sys.stdout.write(
-            "Simulating with " + str(current) + " participants per condition... ")
+        if Verbose:
+            sys.stdout.write(
+                "Simulating with " + str(current) + " participants per condition... ")
         sys.stdout.flush()
         Exp.SetSampleSize(current)
         p = Exp.GetPower(samples)
@@ -112,8 +116,10 @@ def Hop(Exp, limit=100, power=None, samples=10000, Verbose=True):
             if (upper - lower) <= 1:
                 Exp.SetSampleSize(lower)
                 Exp.UpdatePower()
-                # If you're here then at least one instance was over
-                return [lower, Exp.Power]
+                # If you're here then at least one instance was over.
+                if Verbose:
+                    print "Binay search complete. Moving backwards ..."
+                return ReverseSearch(Exp, lower, power, 5)
             upper = current
             current = (upper - lower) / 2 + lower
 
@@ -335,6 +341,36 @@ def ExploreSampleSize(Exp, lower=1, limit=-1, samples=10000):
         Exp.SetSampleSize(CurrSampleSize)
         Exp.UpdatePower(samples)
     return [SampleSize, Power]
+
+
+def ReverseSearch(Exp, lower, power, steps):
+    """
+    Check if there are any smaller sample-sizes in the vicinity with greater or equal power (this often happens with NHST).
+
+        .. warning::
+
+           This function is for internal use only.
+
+    Args:
+        Exp (Experiment): Experiment object to use.
+        lower (int): Initial sample size.
+        power (float): Initial sample size's power.
+        steps (int): Number of steps to move.
+
+    Returns:
+        [Sample size, Power] (list) : First item shows smallest sample size and second item shows the corresponding power.
+    """
+    CurrS = lower
+    CurrP = power
+    for samplesize in range(lower - 1, lower - steps - 1, -1):
+        Exp.SetSampleSize(samplesize)
+        p = Exp.GetPower(samples)
+        if p >= CurrP:
+            CurrP = p
+            CurrS = samplesize
+    Exp.SetSampleSize(CurrS)
+    Exp.UpdatePower()
+    return [CurrS, CurrP]
 
 
 def PlotPowerSamples(Samples, Filename=None):

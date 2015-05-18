@@ -613,7 +613,10 @@ Name (str) : Function&#8217;s name.</dd>
 <dl class="function">
 <dt id="BunnyFunctions.Hop">
 <code class="descclassname">BunnyFunctions.</code><code class="descname">Hop</code><span class="sig-paren">(</span><em>Exp</em>, <em>limit=100</em>, <em>power=None</em>, <em>samples=10000</em>, <em>Verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.Hop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine an experiment&#8217;s sample size through binary search.</p>
+<dd><p>Determine an experiment&#8217;s sample size through binary + local search.
+An experiment&#8217;s power is often only approximately monotonic as a function of the sample size (especially with NHST).
+This function does binary search to find an approximate sample size, and then exhaustively checks
+the nearby region ().</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd><p class="first">Exp (Experiment): Experiment object to use (see Experiment class)</p>
@@ -682,6 +685,27 @@ Name (str) : Function&#8217;s name.</dd>
 </dl>
 <p>&gt;&gt; res = ExploreSampleSize(Exp, 15, 20)
 &gt;&gt; PlotPowerSamples(res)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="BunnyFunctions.ReverseSearch">
+<code class="descclassname">BunnyFunctions.</code><code class="descname">ReverseSearch</code><span class="sig-paren">(</span><em>Exp</em>, <em>lower</em>, <em>power</em>, <em>steps</em><span class="sig-paren">)</span><a class="headerlink" href="#BunnyFunctions.ReverseSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if there are any smaller sample-sizes in the vicinity with greater or equal power (this often happens with NHST).</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is for internal use only.</p>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Exp (Experiment): Experiment object to use.
+lower (int): Initial sample size.
+power (float): Initial sample size&#8217;s power.
+steps (int): Number of steps to move.</dd>
+<dt>Returns:</dt>
+<dd>[Sample size, Power] (list) : First item shows smallest sample size and second item shows the corresponding power.</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -804,6 +828,23 @@ inputalpha (float): Threshold at which test succeeds</dd>
 <dd>Function</dd>
 </dl>
 <p>&gt;&gt; MyFunction = Behaviors.BernoulliAgent(0.5)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Behaviors.BernoulliInclusionAgent">
+<code class="descclassname">Behaviors.</code><code class="descname">BernoulliInclusionAgent</code><span class="sig-paren">(</span><em>Bias=0.5</em>, <em>Pinc=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Behaviors.BernoulliInclusionAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function that returns 1 with a certain probability and 0 otherwise.
+However, if function returns 0 it has to pass an inclusion with probability Pinc</p>
+<p>Intuitively, this models a population where a proportion of participants master the task (they respond correctly and pass inclusion).
+Participants who don&#8217;t understand the task, will likely be stopped by the inclusion question, however, there is a chance that they wil pass it by chance.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Bias (float): Probability of success
+Pinc (float): Probability of passing inclusion</dd>
+<dt>Returns:</dt>
+<dd>Function</dd>
+</dl>
+<p>&gt;&gt; MyFunction = Behaviors.BernoulliInclusionAgent(0.8,0.5)</p>
 </dd></dl>
 
 <dl class="function">

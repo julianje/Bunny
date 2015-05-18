@@ -44,6 +44,28 @@ def BernoulliAgent(Bias=0.5):
     return [F, "Bernoulli behavior"]
 
 
+def BernoulliInclusionAgent(Bias=0.5, Pinc=0.5):
+    """
+    Create a function that returns 1 with a certain probability and 0 otherwise.
+    However, if function returns 0 it has to pass an inclusion with probability Pinc
+
+    Intuitively, this models a population where a proportion of participants master the task (they respond correctly and pass inclusion).
+    Participants who don't understand the task, will likely be stopped by the inclusion question, however, there is a chance that they wil pass it by chance.
+
+    Args:
+        Bias (float): Probability of success
+        Pinc (float): Probability of passing inclusion
+
+    Returns:
+        Function
+
+    >> MyFunction = Behaviors.BernoulliInclusionAgent(0.8,0.5)
+    """
+    def F(B=Bias):
+        return 1 if random.random() < (B + (1-B)*Pinc/2.0) else 0
+    return [F, "Bernoulli with inclusion"]
+
+
 def BinomialAgent(N, Bias):
     """
     Create a function that returns the sum of n independent bernoulli samples
